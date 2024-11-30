@@ -12,7 +12,7 @@ const NewsLayout = () => {
                 className="w-full md:w-[70%] h-[250px] md:h-[400px] object-cover"
                 alt=""
               />
-              <div className="bg-gray-300 w-full md:w-[45%] p-4 overflow-hidden">
+              <div className="bg-gray-300 w-full md:w-[45%] p-4 overflow-hidden">s
                 <p className="whitespace-normal break-words">
                   aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaáđwdwaaaaaaaaaaaaaaaaa
                 </p>

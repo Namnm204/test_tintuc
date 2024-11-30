@@ -1,8 +1,8 @@
-import Banner from "./componentHomPages/banner";
-import CustomLayout from "./componentHomPages/CustomLayout ";
-import GridLayout from "./componentHomPages/GridLayout";
-import NewsLayout from "./componentHomPages/NewsLayout";
-import StickyImages from "./componentHomPages/StickyImages";
+import Banner from "./component/banner";
+import CustomLayout from "./component/CustomLayout ";
+import GridLayout from "./component/GridLayout";
+import NewsLayout from "./component/NewsLayout";
+import StickyImages from "./component/StickyImages";
 
 const HomePage = () => {
   return (
