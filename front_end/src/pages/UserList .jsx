@@ -78,12 +78,6 @@ const UserList = () => {
                   {user["email "].trim()}
                 </td>
                 <td className="py-2 px-4 text-sm">
-                  <Link
-                    to={`/edit/${user.id}`}
-                    className="text-blue-500 hover:text-blue-700 mr-2"
-                  >
-                    Edit
-                  </Link>
                   <button
                     onClick={() => handleDelete(user.id)}
                     className="text-red-500 hover:text-red-700"
