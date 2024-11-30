@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
-import Client from "./layout/Client";
+import Client from "./layout/client/Client";
 // import HomePage from "./pages/HomePage";
 import UserList from "./pages/admin/products/UserList ";
 import UserForm from "./pages/admin/products/UserForm";

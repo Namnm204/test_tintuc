@@ -17,6 +17,9 @@ const AdminLayout = () => {
             <Link to="/admin/add">Thêm tin tức</Link>
           </li>
           <li className="mt-4">
+            <Link to="/admin/banner">Quản lý Banner</Link>
+          </li>
+          <li className="mt-4">
             <Link to="/">Về trang chủ</Link>
           </li>
         </ul>
