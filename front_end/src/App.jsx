@@ -8,6 +8,7 @@ import AdminLayout from "./layout/admin/index";
 import ProductDetailPage from "./pages/admin/products/ProductDetailPage";
 import PrivateRoute from "./PrivateRoute";
 import Login from "./pages/admin/user/Login ";
+import BannerList from "./pages/admin/banner";
 
 function App() {
   return (
@@ -43,6 +44,14 @@ function App() {
           element={
             <PrivateRoute>
               <ProductDetailPage />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="banners"
+          element={
+            <PrivateRoute>
+              <BannerList />
             </PrivateRoute>
           }
         />
