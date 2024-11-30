@@ -3,6 +3,7 @@ import { handleGet } from "./src/methods/handleGet";
 import { handlePost } from "./src/methods/handlePost";
 import { handleDelete } from "./src/methods/handleDelete";
 import { handleGetById } from "./src/methods/handleGetById";
+import { handleLogin } from "./src/methods/handleLogin"; // Import the handleLogin function
 
 export default {
   async fetch(request, env) {
@@ -28,7 +29,12 @@ export default {
       return handleDelete(request, env);
     }
 
-    // Handle POST request
+    // Handle POST request for login
+    if (request.method === "POST" && url.pathname === "/login") {
+      return handleLogin(env, request); // Handle login here
+    }
+
+    // Handle POST request for other purposes
     if (request.method === "POST") {
       return handlePost(request, env);
     }
