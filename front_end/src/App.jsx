@@ -9,9 +9,7 @@ import AdminLayout from "./layout/admin/index";
 function App() {
   return (
     <Routes>
-      <Route path="" element={<Client />}>
-      
-      </Route>
+      <Route path="" element={<Client />}></Route>
       <Route path="admin" element={<AdminLayout />}>
         <Route path="" element={<UserList />} />
         <Route path="add" element={<UserForm />} />

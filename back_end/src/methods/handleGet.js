@@ -1,6 +1,6 @@
 export async function handleGet(env) {
   try {
-    const { results } = await env.D1.prepare("SELECT * FROM users").all();
+    const { results } = await env.D1.prepare("SELECT * FROM tintucs").all();
     return new Response(JSON.stringify(results), {
       headers: {
         "Content-Type": "application/json",

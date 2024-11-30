@@ -1,32 +1,46 @@
 export async function handlePost(request, env) {
   try {
     const requestBody = await request.json(); // Get JSON body
-    const { name, email } = requestBody;
+    const {
+      title,
+      description,
+      image,
+      author,
+      category,
+      gallery, // Array of images
+      content,
+      created_at,
+    } = requestBody;
 
     // Validate inputs
-    if (!name || !email) {
-      return new Response("Missing required fields: name or email", {
-        status: 400,
-      });
+    if (!title || !description || !author || !category || !gallery) {
+      return new Response(
+        "Missing required fields: title, description, author, category, or gallery",
+        { status: 400 }
+      );
     }
 
-    // Validate email format
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-      return new Response("Invalid email format", {
-        status: 400,
-      });
-    }
-
-    // Insert new user into the database
+    // Convert gallery array to JSON string to store it in database
+    const galleryJson = JSON.stringify(gallery);
+    // Insert new article into the database
     const result = await env.D1.prepare(
-      'INSERT INTO users (name, "email ") VALUES (?, ?)'
+      "INSERT INTO tintucs (title, description, image, author, category, gallery, content, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?)"
     )
-      .bind(name, email)
+      .bind(
+        title,
+        description,
+        image,
+        author,
+        category,
+        galleryJson, // Store gallery as JSON string
+        content,
+        created_at
+      )
       .run();
 
-    return new Response("User added successfully", {
+    return new Response("Thêm thành công", {
       status: 201,
+      result,
       headers: {
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Methods": "GET, POST, DELETE",

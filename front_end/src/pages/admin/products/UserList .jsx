@@ -2,19 +2,19 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
-const UserList = () => {
-  const [users, setUsers] = useState([]);
+const TintucList = () => {
+  const [tintucs, settintucs] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [userUpdated, setuserUpdated] = useState(false);
+  const [tintucUpdated, settintucUpdated] = useState(false);
 
-  const fetchUsers = async () => {
+  const fetchtintucs = async () => {
     try {
       const response = await axios.get(
         "https://my-worker.namdaynay001.workers.dev/"
       );
-      setUsers(response.data);
-      setuserUpdated(response);
+      settintucs(response.data);
+      settintucUpdated(response);
     } catch (error) {
       setError(error.message);
     } finally {
@@ -23,20 +23,22 @@ const UserList = () => {
   };
 
   useEffect(() => {
-    fetchUsers();
-  }, [userUpdated]);
+    fetchtintucs();
+  }, [tintucUpdated]);
 
   const handleDelete = async (id) => {
-    if (window.confirm("Are you sure you want to delete this user?")) {
+    if (window.confirm("Are you sure you want to delete this tintuc?")) {
       try {
         await axios.delete(`https://my-worker.namdaynay001.workers.dev/${id}`, {
           headers: {
             "Content-Type": "application/json",
           },
         });
-        setUsers((prevUsers) => prevUsers.filter((user) => user.id !== id)); // Update the user list
+        settintucs((prevtintucs) =>
+          prevtintucs.filter((tintuc) => tintuc.id !== id)
+        ); // Update the tintuc list
       } catch (error) {
-        console.error("Error deleting user:", error);
+        console.error("Error deleting tintuc:", error);
       }
     }
   };
@@ -46,41 +48,70 @@ const UserList = () => {
 
   return (
     <div className="p-6">
-      <h1 className="text-2xl font-semibold mb-4">User List</h1>
+      <h1 className="text-2xl font-semibold mb-4">tintuc List</h1>
       <Link
         to="/admin/add"
         className="inline-block bg-blue-500 text-white px-4 py-2 rounded mb-4 hover:bg-blue-600"
       >
-        Add User
+        Add tintuc
       </Link>
-      {users.length === 0 ? (
-        <div className="text-gray-600">No users available.</div>
+      {tintucs.length === 0 ? (
+        <div className="text-gray-600">No tintucs available.</div>
       ) : (
-        <table className="min-w-full table-auto border-collapse">
-          <thead>
-            <tr className="bg-gray-100">
-              <th className="py-2 px-4 text-left text-sm font-medium text-gray-700">
-                Name
-              </th>
-              <th className="py-2 px-4 text-left text-sm font-medium text-gray-700">
-                Email
-              </th>
-              <th className="py-2 px-4 text-left text-sm font-medium text-gray-700">
-                Actions
-              </th>
+        <table className="min-w-full table-auto border-collapse bg-white shadow-md rounded-lg overflow-hidden">
+          <thead className="bg-blue-500 text-white">
+            <tr>
+              <th className="py-3 px-4 text-sm font-medium">ID</th>
+              <th className="py-3 px-4 text-sm font-medium">Title</th>
+              <th className="py-3 px-4 text-sm font-medium">Description</th>
+              <th className="py-3 px-4 text-sm font-medium">Image</th>
+              <th className="py-3 px-4 text-sm font-medium">Author</th>
+              <th className="py-3 px-4 text-sm font-medium">Category</th>
+              <th className="py-3 px-4 text-sm font-medium">Gallery</th>
+              <th className="py-3 px-4 text-sm font-medium">Content</th>
+              <th className="py-3 px-4 text-sm font-medium">Created At</th>
+              <th className="py-3 px-4 text-sm font-medium">Actions</th>
             </tr>
           </thead>
           <tbody>
-            {users.map((user) => (
-              <tr key={user.id} className="border-b">
-                <td className="py-2 px-4 text-sm text-gray-800">{user.name}</td>
-                <td className="py-2 px-4 text-sm text-gray-800">
-                  {user["email "].trim()}
+            {tintucs.map((tintuc, index) => (
+              <tr
+                key={tintuc.id}
+                className={`border-b ${
+                  index % 2 === 0 ? "bg-gray-50" : "bg-white"
+                } hover:bg-blue-50`}
+              >
+                <td className="py-3 px-4 text-sm text-center text-gray-800">
+                  {tintuc.id}
                 </td>
-                <td className="py-2 px-4 text-sm">
+                <td className="py-3 px-4 text-sm text-center text-gray-800">
+                  {tintuc.title}
+                </td>
+                <td className="py-3 px-4 text-sm text-center text-gray-800">
+                  {tintuc.description}
+                </td>
+                <td className="py-3 px-4 text-sm text-center text-gray-800">
+                  <img src={tintuc.image} alt="ảnh chính" width={"50px"} />
+                </td>
+                <td className="py-3 px-4 text-sm text-center text-gray-800">
+                  {tintuc.author}
+                </td>
+                <td className="py-3 px-4 text-sm text-center text-gray-800">
+                  {tintuc.category}
+                </td>
+                <td className="py-3 px-4 text-sm text-center text-gray-800">
+                  <img src={tintuc.gallery} alt="ảnh Phụ" width={"50px"} />
+                </td>
+                <td className="py-3 px-4 text-sm text-center text-gray-800">
+                  {tintuc.content}
+                </td>
+                <td className="py-3 px-4 text-sm text-center text-gray-800">
+                  {tintuc.created_at}
+                </td>
+                <td className="py-3 px-4 text-sm text-center">
                   <button
-                    onClick={() => handleDelete(user.id)}
-                    className="text-red-500 hover:text-red-700"
+                    onClick={() => handleDelete(tintuc.id)}
+                    className="bg-red-500 text-white py-1 px-3 rounded-md hover:bg-red-600 transition duration-300"
                   >
                     Delete
                   </button>
@@ -94,4 +125,4 @@ const UserList = () => {
   );
 };
 
-export default UserList;
+export default TintucList;
