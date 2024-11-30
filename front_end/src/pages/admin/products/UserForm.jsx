@@ -20,7 +20,7 @@ const UserForm = () => {
         }
       );
       if (response.status === 201) {
-        navigate("/"); // Điều hướng nếu thành công
+        navigate("/admin"); // Điều hướng nếu thành công
       }
     } catch (error) {
       console.error("Lỗi khi gửi yêu cầu:", error);
