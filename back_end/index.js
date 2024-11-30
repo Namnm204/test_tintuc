@@ -2,32 +2,38 @@ import { handleOptions } from "./src/methods/handleOptions";
 import { handleGet } from "./src/methods/handleGet";
 import { handlePost } from "./src/methods/handlePost";
 import { handleDelete } from "./src/methods/handleDelete";
+import { handleGetById } from "./src/methods/handleGetById";
 
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
 
-    // Xử lý yêu cầu OPTIONS (CORS)
+    // Handle OPTIONS request (CORS)
     if (request.method === "OPTIONS") {
       return handleOptions();
     }
 
-    // Xử lý yêu cầu GET
-    if (request.method === "GET") {
+    // Handle GET request for all items (e.g., /tintucs)
+    if (request.method === "GET" && !url.pathname.includes("/tintucs/")) {
       return handleGet(env);
     }
 
-    // Xử lý yêu cầu DELETE
+    // Handle GET request for specific item by ID (e.g., /tintucs/:id)
+    if (request.method === "GET" && url.pathname.includes("/tintucs/")) {
+      return handleGetById(env, request);
+    }
+
+    // Handle DELETE request
     if (request.method === "DELETE") {
       return handleDelete(request, env);
     }
 
-    // Xử lý yêu cầu POST
+    // Handle POST request
     if (request.method === "POST") {
       return handlePost(request, env);
     }
 
-    // Nếu phương thức không hợp lệ
+    // If the method is not allowed
     return new Response("Method not allowed", { status: 405 });
   },
 };

@@ -61,7 +61,7 @@ const UserForm = () => {
         <div className="mb-4">
           <input
             type="text"
-            placeholder="Title"
+            placeholder="Tiêu đề tin tức"
             className="w-full p-2 border border-gray-300 rounded-md"
             {...register("title", { required: true })}
           />
@@ -70,7 +70,7 @@ const UserForm = () => {
         <div className="mb-4">
           <input
             type="text"
-            placeholder="Description"
+            placeholder="Mô tả tin tức"
             className="w-full p-2 border border-gray-300 rounded-md"
             {...register("description", { required: true })}
           />
@@ -79,7 +79,7 @@ const UserForm = () => {
         <div className="mb-4">
           <input
             type="text"
-            placeholder="Image URL"
+            placeholder="Đường dẫn ảnh chính"
             className="w-full p-2 border border-gray-300 rounded-md"
             {...register("image")}
           />
@@ -88,7 +88,7 @@ const UserForm = () => {
         <div className="mb-4">
           <input
             type="text"
-            placeholder="Author"
+            placeholder="Tác giả"
             className="w-full p-2 border border-gray-300 rounded-md"
             {...register("author", { required: true })}
           />
@@ -97,7 +97,7 @@ const UserForm = () => {
         <div className="mb-4">
           <input
             type="text"
-            placeholder="Category"
+            placeholder="Danh mục vd: Công nghệ, Văn hóa, Giáo duc..."
             className="w-full p-2 border border-gray-300 rounded-md"
             {...register("category", { required: true })}
           />
@@ -105,7 +105,7 @@ const UserForm = () => {
 
         <div className="mb-4">
           <textarea
-            placeholder="Content"
+            placeholder="Nội dung"
             className="w-full p-2 border border-gray-300 rounded-md"
             {...register("content", { required: true })}
           />
@@ -120,7 +120,7 @@ const UserForm = () => {
             <div key={index} className="mb-2 flex">
               <input
                 type="text"
-                placeholder="Enter image URL"
+                placeholder="Link ảnh phụ"
                 value={link}
                 onChange={(e) => handleGalleryChange(index, e.target.value)}
                 className="w-full p-2 border border-gray-300 rounded-md"
@@ -132,7 +132,8 @@ const UserForm = () => {
             onClick={addGalleryField}
             className="text-blue-500 hover:underline"
           >
-            Add More Image
+            <span>&#43;</span>
+            Thêm link ảnh
           </button>
         </div>
 
