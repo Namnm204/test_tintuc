@@ -82,7 +82,7 @@ const TintucList = () => {
                 } hover:bg-blue-50`}
               >
                 <td className="py-3 px-4 text-sm text-center text-gray-800">
-                  {tintuc.id}
+                  {index + 1}
                 </td>
                 <td className="py-3 px-4 text-sm text-center text-gray-800">
                   {tintuc.title}
@@ -100,15 +100,45 @@ const TintucList = () => {
                   {tintuc.category}
                 </td>
                 <td className="py-3 px-4 text-sm text-center text-gray-800">
-                  <img src={tintuc.gallery} alt="ảnh Phụ" width={"50px"} />
+                  {/* Kiểm tra xem gallery có phải là chuỗi JSON hợp lệ không */}
+                  {(() => {
+                    try {
+                      // Kiểm tra nếu giá trị là một chuỗi JSON hợp lệ
+                      const images =
+                        tintuc.gallery.startsWith("[") &&
+                        tintuc.gallery.endsWith("]")
+                          ? JSON.parse(tintuc.gallery)
+                          : [tintuc.gallery]; // Nếu không phải mảng JSON, coi như 1 ảnh duy nhất
+
+                      if (Array.isArray(images) && images.length > 1) {
+                        return <span>Nhiều ảnh</span>; // Hiển thị "Nhiều ảnh" nếu có hơn một ảnh
+                      } else if (Array.isArray(images) && images.length === 1) {
+                        return (
+                          <img src={images[0]} alt="Ảnh phụ" width="50px" />
+                        );
+                      }
+                    } catch (e) {
+                      console.error("Lỗi khi phân tích gallery:", e);
+                      return null;
+                    }
+                  })()}
                 </td>
+
                 <td className="py-3 px-4 text-sm text-center text-gray-800">
                   {tintuc.content}
                 </td>
                 <td className="py-3 px-4 text-sm text-center text-gray-800">
                   {tintuc.created_at}
                 </td>
-                <td className="py-3 px-4 text-sm text-center">
+                <td className="py-3 px-4 text-sm text-center flex">
+                  <button>
+                    <Link
+                      to={`/admin/${tintuc.id}`}
+                      className="ml-2 bg-green-500 text-white py-1 px-3 rounded-md hover:bg-green-600 transition duration-300"
+                    >
+                      View
+                    </Link>
+                  </button>
                   <button
                     onClick={() => handleDelete(tintuc.id)}
                     className="bg-red-500 text-white py-1 px-3 rounded-md hover:bg-red-600 transition duration-300"

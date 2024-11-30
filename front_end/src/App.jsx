@@ -5,6 +5,7 @@ import Client from "./layout/Client";
 import UserList from "./pages/admin/products/UserList ";
 import UserForm from "./pages/admin/products/UserForm";
 import AdminLayout from "./layout/admin/index";
+import ProductDetailPage from "./pages/admin/products/ProductDetailPage";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <Route path="admin" element={<AdminLayout />}>
         <Route path="" element={<UserList />} />
         <Route path="add" element={<UserForm />} />
+        <Route path=":id" element={<ProductDetailPage />} />
       </Route>
     </Routes>
   );
