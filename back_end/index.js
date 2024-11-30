@@ -4,6 +4,7 @@ import { handlePost } from "./src/methods/handlePost";
 import { handleDelete } from "./src/methods/handleDelete";
 import { handleGetById } from "./src/methods/handleGetById";
 import { handleLogin } from "./src/methods/handleLogin"; // Import the handleLogin function
+import { handlePostBanner } from "./src/banner/handlePostBanner";
 
 export default {
   async fetch(request, env) {
@@ -12,6 +13,11 @@ export default {
     // Handle OPTIONS request (CORS)
     if (request.method === "OPTIONS") {
       return handleOptions();
+    }
+
+    // Handle POST request for login
+    if (request.method === "POST" && url.pathname === "/login") {
+      return handleLogin(env, request);
     }
 
     // Handle GET request for all items (e.g., /tintucs)
@@ -24,17 +30,17 @@ export default {
       return handleGetById(env, request);
     }
 
+    // Banner
+    if (request.method === "POST" && url.pathname === "/banners") {
+      return handlePostBanner(request, env);
+    }
+
     // Handle DELETE request
     if (request.method === "DELETE") {
       return handleDelete(request, env);
     }
 
-    // Handle POST request for login
-    if (request.method === "POST" && url.pathname === "/login") {
-      return handleLogin(env, request); // Handle login here
-    }
-
-    // Handle POST request for other purposes
+    // Handle POST request for tintucs or other general POST requests
     if (request.method === "POST") {
       return handlePost(request, env);
     }
