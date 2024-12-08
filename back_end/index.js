@@ -2,6 +2,7 @@ import { handleOptions } from "./src/methods/handleOptions";
 import { handleGet } from "./src/methods/handleGet";
 import { handlePost } from "./src/methods/handlePost";
 import { handleGetById } from "./src/methods/handleGetById";
+import { handleDelete } from "./src/methods/handleDelete";
 import { handleLogin } from "./src/methods/handleLogin";
 import { handlePostBanner } from "./src/banner/handlePostBanner";
 import { GetBanner } from "./src/banner/Get";
@@ -44,6 +45,9 @@ export default {
     // Handle DELETE request for banners with an ID in the path
     if (request.method === "DELETE" && url.pathname.startsWith("/banners/")) {
       return handleDeleteBanner(request, env);
+    }
+    if (request.method === "DELETE" && url.pathname.startsWith("/")) {
+      return handleDelete(request, env);
     }
 
     // Handle POST request for tintucs or other general POST requests

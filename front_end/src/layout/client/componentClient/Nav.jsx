@@ -24,30 +24,30 @@ const Nav = () => {
 
         {/* Menu trên desktop */}
         <ul className="hidden md:flex space-x-6 text-lg">
-          <li><a href="/thoi-su" className="hover:text-gray-700">Thời sự</a></li>
-          <li><a href="/kinh-te" className="hover:text-gray-700">Kinh tế</a></li>
-          <li><a href="/the-gioi" className="hover:text-gray-700">Thế giới</a></li>
-          <li><a href="/doi-song" className="hover:text-gray-700">Đời sống</a></li>
-          <li><a href="/suc-khoe" className="hover:text-gray-700">Sức khỏe</a></li>
-          <li><a href="/giai-tri" className="hover:text-gray-700">Giải trí</a></li>
-          <li><a href="/the-thao" className="hover:text-gray-700">Thể thao</a></li>
-          <li><a href="/cong-nghe" className="hover:text-gray-700">Công nghệ</a></li>
-          <li><a href="/phim-truyen" className="block hover:text-gray-700">Phim truyện</a></li>
+          <li><a href="#" className="hover:text-gray-700">Thời sự</a></li>
+          <li><a href="#" className="hover:text-gray-700">Kinh tế</a></li>
+          <li><a href="#" className="hover:text-gray-700">Thế giới</a></li>
+          <li><a href="#" className="hover:text-gray-700">Đời sống</a></li>
+          <li><a href="#" className="hover:text-gray-700">Sức khỏe</a></li>
+          <li><a href="#" className="hover:text-gray-700">Giải trí</a></li>
+          <li><a href="#" className="hover:text-gray-700">Thể thao</a></li>
+          <li><a href="#" className="hover:text-gray-700">Công nghệ</a></li>
+          <li><a href="#" className="block hover:text-gray-700">Phim truyện</a></li>
         </ul>
       </div>
 
       {/* Menu trên thiết bị nhỏ */}
       {isOpen && (
         <ul className={`md:hidden mt-4 space-y-2 text-sm bg-white p-4 rounded-lg shadow-lg animate-slide-down`}>
-        <li><a href="/thoi-su" className="block py-2 px-3 rounded hover:bg-rose-200 transition">Thời sự</a></li>
-        <li><a href="/kinh-te" className="block py-2 px-3 rounded hover:bg-rose-200 transition">Kinh tế</a></li>
-        <li><a href="/the-gioi" className="block py-2 px-3 rounded hover:bg-rose-200 transition">Thế giới</a></li>
-        <li><a href="/doi-song" className="block py-2 px-3 rounded hover:bg-rose-200 transition">Đời sống</a></li>
-        <li><a href="/suc-khoe" className="block py-2 px-3 rounded hover:bg-rose-200 transition">Sức khỏe</a></li>
-        <li><a href="/giai-tri" className="block py-2 px-3 rounded hover:bg-rose-200 transition">Giải trí</a></li>
-        <li><a href="/the-thao" className="block py-2 px-3 rounded hover:bg-rose-200 transition">Thể thao</a></li>
-        <li><a href="/cong-nghe" className="block py-2 px-3 rounded hover:bg-rose-200 transition">Công nghệ</a></li>
-        <li><a href="/phim-truyen" className="block py-2 px-3 rounded hover:bg-rose-200 transition">Phim truyện</a></li>
+        <li><a href="#" className="block py-2 px-3 rounded hover:bg-rose-200 transition">Thời sự</a></li>
+        <li><a href="#" className="block py-2 px-3 rounded hover:bg-rose-200 transition">Kinh tế</a></li>
+        <li><a href="#" className="block py-2 px-3 rounded hover:bg-rose-200 transition">Thế giới</a></li>
+        <li><a href="#" className="block py-2 px-3 rounded hover:bg-rose-200 transition">Đời sống</a></li>
+        <li><a href="#" className="block py-2 px-3 rounded hover:bg-rose-200 transition">Sức khỏe</a></li>
+        <li><a href="#" className="block py-2 px-3 rounded hover:bg-rose-200 transition">Giải trí</a></li>
+        <li><a href="#" className="block py-2 px-3 rounded hover:bg-rose-200 transition">Thể thao</a></li>
+        <li><a href="#" className="block py-2 px-3 rounded hover:bg-rose-200 transition">Công nghệ</a></li>
+        <li><a href="#" className="block py-2 px-3 rounded hover:bg-rose-200 transition">Phim truyện</a></li>
       </ul>
       
       )}
