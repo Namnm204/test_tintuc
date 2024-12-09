@@ -56,12 +56,11 @@ const HomePage = () => {
   const endIndex = startIndex + itemsPerPage;
   const currentTintucs = tintucs.slice(startIndex, endIndex);
 
-  const newsLayoutArticles = currentTintucs.slice(0, 4); // Show first 4 articles in NewsLayout
   const customLayoutArticles = currentTintucs.slice(4, 12); // Show next 8 articles in CustomLayout
 
   return (
     <div className="mt-8 relative">
-      <NewsLayout tintucs={newsLayoutArticles} />
+      <NewsLayout />
       <CustomLayout tintucs={customLayoutArticles} banners={banners} />
       <Banner />
       <GridLayout tintucs={currentTintucs} banners={banners} />

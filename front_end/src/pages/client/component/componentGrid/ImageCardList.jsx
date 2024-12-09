@@ -50,8 +50,8 @@ const ImageCardList = ({ tintucs, banners }) => {
         {banners.length > 0 && (
           <div>
             <img
-              src={banners[2].image}
-              alt={`Banner ${banners[2].id}`}
+              src={banners[0]?.imagehome || ""}
+              alt={`Banner ${banners[0]?.id || "unknown"}`}
               className="w-full h-[375px]"
             />
           </div>

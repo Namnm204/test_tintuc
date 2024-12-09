@@ -2,8 +2,10 @@ import { useEffect, useState } from "react";
 
 const Banner = () => {
   const [banners, setBanners] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
   useEffect(() => {
-    // Fetch banners from your API
     async function fetchBanners() {
       try {
         const response = await fetch(
@@ -13,24 +15,37 @@ const Banner = () => {
           throw new Error("Failed to fetch banners");
         }
         const data = await response.json();
-        setBanners(data); // Assuming the data is an array of banners with image URLs
+        setBanners(data); // Gán dữ liệu banners
       } catch (error) {
-        console.error("Error fetching banners:", error);
+        setError(error.message);
+      } finally {
+        setLoading(false);
       }
     }
 
     fetchBanners();
   }, []);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
+
   return (
     <div className="mt-8 mb-8">
-      {banners.length > 0 && (
+      {banners.length > 0 ? (
         <div>
           <img
-            src={banners[0].image}
-            alt={`Banner ${banners[0].id}`}
+            src={banners[1].imageSale}
+            alt={`Banner ${banners[1].id}`}
             className="md:w-[60%] w-[90%] h-[130px] mx-auto"
           />
         </div>
+      ) : (
+        <p>No banners available</p>
       )}
     </div>
   );

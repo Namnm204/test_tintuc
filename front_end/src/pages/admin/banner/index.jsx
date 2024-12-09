@@ -6,7 +6,14 @@ function BannerList() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [showModal, setShowModal] = useState(false);
-  const [newBannerImage, setNewBannerImage] = useState("");
+  const [newBannerData, setNewBannerData] = useState({
+    imageBanner: "",
+    imagestick: "",
+    imageSale: "",
+    imagehome: "",
+    imageEndpage: [], // Chuyển thành mảng
+  });
+  const [newImageUrl, setNewImageUrl] = useState(""); // New state for input URL
 
   useEffect(() => {
     async function fetchBanners() {
@@ -27,7 +34,7 @@ function BannerList() {
     }
 
     fetchBanners();
-  }, [banners]);
+  }, []);
 
   const handleDelete = async (id) => {
     if (window.confirm("Are you sure you want to delete this banner?")) {
@@ -42,7 +49,7 @@ function BannerList() {
         );
         setBanners((prevBanners) =>
           prevBanners.filter((banner) => banner.id !== id)
-        ); // Update the banner list
+        );
       } catch (error) {
         console.error("Error deleting banner:", error);
       }
@@ -50,15 +57,24 @@ function BannerList() {
   };
 
   const handleAddBanner = async () => {
-    if (!newBannerImage) {
-      alert("Please enter an image URL");
+    const { imageBanner, imagestick, imageSale, imagehome, imageEndpage } =
+      newBannerData;
+
+    if (
+      !imageBanner ||
+      !imagestick ||
+      !imageSale ||
+      !imagehome ||
+      imageEndpage.length === 0
+    ) {
+      alert("Please fill out all fields");
       return;
     }
 
     try {
       await axios.post(
         "https://my-worker.namdaynay001.workers.dev/banners",
-        { image: newBannerImage },
+        newBannerData,
         {
           headers: {
             "Content-Type": "application/json",
@@ -66,8 +82,13 @@ function BannerList() {
         }
       );
       setShowModal(false);
-      setNewBannerImage("");
-      // Fetch the updated banners list
+      setNewBannerData({
+        imageBanner: "",
+        imagestick: "",
+        imageSale: "",
+        imagehome: "",
+        imageEndpage: [],
+      });
       const response = await fetch(
         "https://my-worker.namdaynay001.workers.dev/banners"
       );
@@ -76,6 +97,23 @@ function BannerList() {
     } catch (error) {
       console.error("Error adding banner:", error);
     }
+  };
+
+  const handleAddImageToEndpage = () => {
+    if (newImageUrl) {
+      setNewBannerData((prev) => ({
+        ...prev,
+        imageEndpage: [...prev.imageEndpage, newImageUrl],
+      }));
+      setNewImageUrl(""); // Reset the input after adding
+    }
+  };
+
+  const handleRemoveImageFromEndpage = (index) => {
+    setNewBannerData((prev) => ({
+      ...prev,
+      imageEndpage: prev.imageEndpage.filter((_, i) => i !== index),
+    }));
   };
 
   if (loading) {
@@ -100,7 +138,19 @@ function BannerList() {
           <thead>
             <tr className="bg-gray-200">
               <th className="px-4 py-2 border-b text-left text-sm font-semibold">
-                Image
+                Image Banner
+              </th>
+              <th className="px-4 py-2 border-b text-left text-sm font-semibold">
+                Image Stick
+              </th>
+              <th className="px-4 py-2 border-b text-left text-sm font-semibold">
+                Image Sale
+              </th>
+              <th className="px-4 py-2 border-b text-left text-sm font-semibold">
+                Image Home
+              </th>
+              <th className="px-4 py-2 border-b text-left text-sm font-semibold">
+                Image Endpage
               </th>
               <th className="px-4 py-2 border-b text-left text-sm font-semibold">
                 Actions
@@ -112,11 +162,53 @@ function BannerList() {
               <tr key={banner.id} className="border-b hover:bg-gray-100">
                 <td className="px-4 py-2">
                   <img
-                    src={banner.image}
+                    src={banner.imageBanner}
                     alt={`Banner ${banner.id}`}
                     className="w-32 h-32 object-cover"
                   />
                 </td>
+                <td className="px-4 py-2">
+                  <img
+                    src={banner.imagestick}
+                    alt={`Stick ${banner.id}`}
+                    className="w-32 h-32 object-cover"
+                  />
+                </td>
+                <td className="px-4 py-2">
+                  <img
+                    src={banner.imageSale}
+                    alt={`Sale ${banner.id}`}
+                    className="w-32 h-32 object-cover"
+                  />
+                </td>
+                <td className="px-4 py-2">
+                  <img
+                    src={banner.imagehome}
+                    alt={`Home ${banner.id}`}
+                    className="w-32 h-32 object-cover"
+                  />
+                </td>
+                <td className="px-4 py-2">
+                  {(() => {
+                    try {
+                      const images = JSON.parse(banner.imageEndpage);
+                      if (Array.isArray(images)) {
+                        return images.map((img, index) => (
+                          <img
+                            key={index}
+                            src={img}
+                            alt={`EndPage ${banner.id}-${index}`}
+                            className="w-16 p-2 h-16 object-cover"
+                          />
+                        ));
+                      }
+                    } catch (e) {
+                      console.error("Invalid JSON format for imageEndpage:", e);
+                    }
+                    return <p>không có image</p>;
+                  })()}
+                </td>
+
                 <td className="px-4 py-2">
                   <button
                     onClick={() => handleDelete(banner.id)}
@@ -133,32 +225,126 @@ function BannerList() {
         <p className="text-center text-gray-500">No banners available.</p>
       )}
 
-      {/* Modal for adding a new banner */}
       {showModal && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
           <div className="bg-white p-6 rounded shadow-lg w-1/3">
             <h2 className="text-xl font-bold mb-4">Thêm Banner mới</h2>
             <div className="mb-4">
-              <label className="block mb-2">Thêm Link Banner:</label>
+              <label className="block mb-2">Image Banner:</label>
               <input
                 type="text"
-                value={newBannerImage}
-                onChange={(e) => setNewBannerImage(e.target.value)}
+                placeholder="thêm link ảnh Banner"
+                value={newBannerData.imageBanner}
+                onChange={(e) =>
+                  setNewBannerData({
+                    ...newBannerData,
+                    imageBanner: e.target.value,
+                  })
+                }
                 className="w-full p-2 border border-gray-300 rounded"
               />
             </div>
-            <button
-              onClick={handleAddBanner}
-              className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"
-            >
-              Thêm Banner
-            </button>
-            <button
-              onClick={() => setShowModal(false)}
-              className="ml-2 px-4 py-2 border border-gray-300 rounded hover:bg-gray-100"
-            >
-              Tắt
-            </button>
+            <div className="mb-4">
+              <label className="block mb-2">Image Stick:</label>
+              <input
+                type="text"
+                placeholder="thêm link Stick 2 bên"
+                value={newBannerData.imagestick}
+                onChange={(e) =>
+                  setNewBannerData({
+                    ...newBannerData,
+                    imagestick: e.target.value,
+                  })
+                }
+                className="w-full p-2 border border-gray-300 rounded"
+              />
+            </div>
+            <div className="mb-4">
+              <label className="block mb-2">Image Sale:</label>
+              <input
+                type="text"
+                placeholder="thêm link ảnh Sale"
+                value={newBannerData.imageSale}
+                onChange={(e) =>
+                  setNewBannerData({
+                    ...newBannerData,
+                    imageSale: e.target.value,
+                  })
+                }
+                className="w-full p-2 border border-gray-300 rounded"
+              />
+            </div>
+            <div className="mb-4">
+              <label className="block mb-2">Image Home:</label>
+              <input
+                type="text"
+                placeholder="thêm link ảnh Home"
+                value={newBannerData.imagehome}
+                onChange={(e) =>
+                  setNewBannerData({
+                    ...newBannerData,
+                    imagehome: e.target.value,
+                  })
+                }
+                className="w-full p-2 border border-gray-300 rounded"
+              />
+            </div>
+            <div className="mb-4">
+              <label className="block mb-2">Image Endpage:</label>
+              <div className="flex">
+                <input
+                  type="text"
+                  value={newImageUrl}
+                  onChange={(e) => setNewImageUrl(e.target.value)}
+                  className="w-full p-2 border border-gray-300 rounded"
+                  placeholder="thêm link ảnh"
+                />
+                <button
+                  onClick={handleAddImageToEndpage}
+                  className="ml-2 px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"
+                >
+                  Thêm
+                </button>
+              </div>
+              <div className="absolute md:ml-[600px] md:mt-[-400px]">
+                <img
+                  className="w-[90%]"
+                  src="../../../../public/demo.png"
+                  alt=""
+                />
+              </div>
+              <div className="mt-2">
+                {newBannerData.imageEndpage.map((url, index) => (
+                  <div key={index} className="flex items-center">
+                    <img
+                      src={url}
+                      alt={`Endpage preview ${index}`}
+                      className="w-16 h-16 object-cover mr-2"
+                    />
+                    <button
+                      onClick={() => handleRemoveImageFromEndpage(index)}
+                      className="text-red-500 hover:text-red-700"
+                    >
+                      Remove
+                    </button>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="flex gap-3 justify-end">
+              <button
+                onClick={handleAddBanner}
+                className="px-4  py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+              >
+                Thêm banner
+              </button>
+              <button
+                onClick={() => setShowModal(false)}
+                className="  px-4 py-2 bg-gray-200 rounded hover:bg-gray-300"
+              >
+                Tắt
+              </button>
+            </div>
           </div>
         </div>
       )}

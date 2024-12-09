@@ -8,8 +8,8 @@ const CustomLayout = ({ tintucs, banners }) => {
         {banners.length > 1 && (
           <Link to={`/tintuc/${tintucs[0]?.id}`} className="w-full">
             <img
-              src={banners[1].image}
-              alt={`Banner ${banners[1].id}`}
+              src={banners[0].imageSale}
+              alt={`Banner ${banners[0].id}`}
               className="w-full h-auto object-cover"
             />
           </Link>

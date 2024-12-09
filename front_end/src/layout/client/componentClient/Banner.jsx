@@ -42,7 +42,7 @@ const Banner = () => {
           {banners.map((banner) => (
             <div key={banner.id}>
               <img
-                src={banner.image}
+                src={banner.imageBanner}
                 alt={`Banner ${banner.id}`}
                 className="w-full h-[500px]"
               />

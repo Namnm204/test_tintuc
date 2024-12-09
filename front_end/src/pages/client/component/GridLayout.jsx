@@ -6,7 +6,6 @@ import ImageCardList from "./componentGrid/ImageCardList";
 const GridLayout = ({ tintucs, banners }) => {
   const ImageCardListActive = tintucs.slice(20, 23);
   const topGridArticles = tintucs.slice(12, 20);
-  // console.log(tintucs);
 
   return (
     <div className="grid md:grid-cols-3 grid-cols-1 w-[90%] md:w-[75%] mx-auto pb-8">
@@ -14,7 +13,7 @@ const GridLayout = ({ tintucs, banners }) => {
       <div className="col-span-2 mr-4">
         <TopGrid tintucs={topGridArticles} />
         <div className="w-full h-[2px] bg-gray-300 my-4"></div>
-        <MiddleGrid />
+        <MiddleGrid banners={banners} />
         <div className="w-full h-[2px] bg-gray-300 my-8"></div>
         <BottomGrid />
       </div>
