@@ -60,7 +60,7 @@ const NewsLayout = () => {
                     className="w-full md:w-[70%] h-[250px] md:h-[400px] object-cover"
                     alt={newsLayoutArticles[0].title} // Sử dụng tiêu đề làm alt
                   />
-                  <div className="bg-gray-300 w-full md:w-[45%] p-4 overflow-hidden">
+                  <div className=" w-full md:w-[45%] p-4 overflow-hidden">
                     <h3 className="font-semibold text-lg">
                       ID: {newsLayoutArticles[0].id}
                     </h3>
@@ -83,7 +83,7 @@ const NewsLayout = () => {
                   key={tintuc.id}
                   className="w-full"
                 >
-                  <div className="bg-gray-300 p-4 overflow-hidden whitespace-normal break-words">
+                  <div className=" p-4 overflow-hidden whitespace-normal break-words">
                     <h3>{tintuc.title}</h3>
                     <p className="h-[224px] text-[13px] overflow-hidden text-ellipsis line-clamp-3">
                       {tintuc.description}
@@ -100,11 +100,11 @@ const NewsLayout = () => {
         {/* Phần bên phải slide chay */}
         {tintucs.length > 0 ? (
           <div
-            className="bg-gray-300 relative w-full md:w-[23%] flex flex-col justify-start mt-4 md:mt-0 "
+            className=" relative w-full md:w-[23%] flex flex-col justify-start mt-4 md:mt-0 "
             style={{ maxHeight: "700px" }} // Giới hạn chiều cao
           >
-            <h2 className="text-xl font-semibold absolute top-2 bg-blue-500 p-2 pr-14">
-              Slide tin tức hot chạy
+            <h2 className="text-3xl font-semibold absolute top-2 text-red-500 p-2 pr-14">
+              Tin tức HOT
             </h2>
             <div
               className="mt-16 overflow-hidden"
@@ -135,7 +135,7 @@ const NewsLayout = () => {
         )}
       </div>
 
-      <div className="h-px w-[90%] md:w-[75%] mx-auto bg-gray-300 my-8" />
+      <div className="h-px w-[90%] md:w-[75%] mx-auto  my-8" />
     </>
   );
 };

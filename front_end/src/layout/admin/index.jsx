@@ -8,13 +8,10 @@ const AdminLayout = () => {
         <h2 className="text-xl font-semibold">Admin Panel</h2>
         <ul>
           <li className="mt-4">
-            <Link to="/admin">Dashboard</Link>
+            <Link to="/admin">Thống kê</Link>
           </li>
           <li className="mt-4">
-            <Link to="/admin/">Danh sách tin tức</Link>
-          </li>
-          <li className="mt-4">
-            <Link to="/admin/add">Thêm tin tức</Link>
+            <Link to="/admin/">Quản lý tin tức</Link>
           </li>
           <li className="mt-4">
             <Link to="/admin/banners">Quản lý Banner</Link>

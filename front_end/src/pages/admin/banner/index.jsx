@@ -138,6 +138,9 @@ function BannerList() {
           <thead>
             <tr className="bg-gray-200">
               <th className="px-4 py-2 border-b text-left text-sm font-semibold">
+                STT
+              </th>
+              <th className="px-4 py-2 border-b text-left text-sm font-semibold">
                 Image Banner
               </th>
               <th className="px-4 py-2 border-b text-left text-sm font-semibold">
@@ -158,8 +161,9 @@ function BannerList() {
             </tr>
           </thead>
           <tbody>
-            {banners.map((banner) => (
-              <tr key={banner.id} className="border-b hover:bg-gray-100">
+            {banners.map((banner, index) => (
+              <tr key={index} className="border-b hover:bg-gray-100">
+                <td className="text-center">{index + 1}</td>
                 <td className="px-4 py-2">
                   <img
                     src={banner.imageBanner}
@@ -188,7 +192,7 @@ function BannerList() {
                     className="w-32 h-32 object-cover"
                   />
                 </td>
-                <td className="px-4 py-2">
+                <td className="px-4 py-2 flex w-[300px] flex-wrap">
                   {(() => {
                     try {
                       const images = JSON.parse(banner.imageEndpage);
