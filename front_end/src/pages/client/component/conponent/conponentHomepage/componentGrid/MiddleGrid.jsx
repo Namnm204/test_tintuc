@@ -33,14 +33,14 @@ const MiddleGrid = ({ banners }) => {
       </div>
 
       {/* Hàng thứ hai */}
-      <div className="h-[271px] md:mt-[-105px] mt-[75px]">
+      <div className="h-[271px]  md:mt-[-105px] mt-0">
         <img
           src={imageEndpageArray[3] || "/path/to/default/image4.jpg"}
           alt="banner"
           className="w-full h-full object-cover"
         />
       </div>
-      <div className="h-[166px] mt-[-70px] md:mt-0">
+      <div className="h-[166px]">
         <img
           src={imageEndpageArray[4] || "/path/to/default/image5.jpg"}
           alt="banner"

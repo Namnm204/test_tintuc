@@ -11,14 +11,14 @@ const ImageCardList = ({ tintucs, banners }) => {
     <div className="space-y-4 relative h-[1095px]">
       {/* Large Image Card */}
       {largeCard && (
-        <div className="w-full rounded-lg mb-14 md:mt-0 mt-10">
+        <div className="w-full rounded-lg mb-10 md:mt-0 mt-10">
           <Link to={`/tintuc/${largeCard.id}`} className="w-full">
             <img
               src={largeCard.image || "/banner.jpg"} // Use provided image or fallback
               alt={largeCard.title || "Tin tức"}
               className="w-[390px] h-[200px] object-cover"
             />
-            <p className="mt-2 text-center px-4 text-sm break-words">
+            <p className="mt-2 px-2 text-[16px] break-words overflow-hidden text-ellipsis line-clamp-2">
               {largeCard.title || "Tiêu đề tin tức lớn"}
             </p>
           </Link>
@@ -34,7 +34,7 @@ const ImageCardList = ({ tintucs, banners }) => {
               alt={tintuc.title || `Tin tức ${index + 2}`}
               className=" w-full md:w-[190px] h-[200px] md:h-[100px] object-cover"
             />
-            <p className="mt-2 text-left px-4 text-sm break-words">
+            <p className="mt-2 text-left px-2 text-sm break-words overflow-hidden text-ellipsis line-clamp-3">
               {tintuc.title || `Tiêu đề tin tức ${index + 2}`}
             </p>
             {/* Add separator except after the last card */}

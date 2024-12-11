@@ -3,7 +3,7 @@ import { Link, Outlet } from "react-router-dom";
 
 const AdminLayout = () => {
   return (
-    <div className="flex h-screen">
+    <div className="flex h-auto">
       <div className="w-64 bg-gray-800 text-white p-4">
         <h2 className="text-xl font-semibold">Admin Panel</h2>
         <ul>

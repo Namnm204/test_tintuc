@@ -32,7 +32,9 @@ const CustomLayout = ({ tintucs, banners }) => {
                   alt={tintuc.title}
                   className="w-full h-[150px] object-cover"
                 />
-                <p className="text-center p-2">{tintuc.title}</p>
+                <p className="p-2 h-[80px] overflow-hidden text-ellipsis line-clamp-3">
+                  {tintuc.title}
+                </p>
               </div>
             </Link>
           ))}
@@ -53,7 +55,9 @@ const CustomLayout = ({ tintucs, banners }) => {
                   alt={tintuc.title}
                   className="w-full h-[150px] object-cover"
                 />
-                <p className="text-center p-2">{tintuc.title}</p>
+                <p className="p-2 h-[80px] overflow-hidden text-ellipsis line-clamp-3">
+                  {tintuc.title}
+                </p>
               </div>
             </Link>
           ))}

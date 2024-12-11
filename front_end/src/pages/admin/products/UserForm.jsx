@@ -90,7 +90,7 @@ const UserForm = () => {
             type="text"
             placeholder="Tác giả"
             className="w-full p-2 border border-gray-300 rounded-md"
-            {...register("author", { required: true })}
+            {...register("author")}
           />
         </div>
 
@@ -99,7 +99,7 @@ const UserForm = () => {
             type="text"
             placeholder="Danh mục vd: Công nghệ, Văn hóa, Giáo duc..."
             className="w-full p-2 border border-gray-300 rounded-md"
-            {...register("category", { required: true })}
+            {...register("category")}
           />
         </div>
 
@@ -107,7 +107,7 @@ const UserForm = () => {
           <textarea
             placeholder="Nội dung"
             className="w-full p-2 border border-gray-300 rounded-md"
-            {...register("content", { required: true })}
+            {...register("content")}
           />
         </div>
 

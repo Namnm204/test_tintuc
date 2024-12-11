@@ -2,26 +2,19 @@ export async function handlePost(request, env) {
   try {
     const requestBody = await request.json(); // Get JSON body
     const {
-      title,
-      description,
-      image,
-      author,
-      category,
-      gallery, // Array of images
-      content,
-      created_at,
+      title = "", // Gán giá trị mặc định nếu thiếu
+      description = "",
+      image = "",
+      author = "",
+      category = "",
+      gallery = [], // Mặc định là mảng rỗng
+      content = "",
+      created_at = new Date().toISOString(), // Gán thời gian hiện tại nếu không có
     } = requestBody;
-
-    // Validate inputs
-    if (!title || !description || !author || !category || !gallery) {
-      return new Response(
-        "Missing required fields: title, description, author, category, or gallery",
-        { status: 400 }
-      );
-    }
 
     // Convert gallery array to JSON string to store it in database
     const galleryJson = JSON.stringify(gallery);
+
     // Insert new article into the database
     const result = await env.D1.prepare(
       "INSERT INTO tintucs (title, description, image, author, category, gallery, content, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?)"

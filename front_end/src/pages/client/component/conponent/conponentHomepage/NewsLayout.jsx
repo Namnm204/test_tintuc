@@ -60,14 +60,11 @@ const NewsLayout = () => {
                     className="w-full md:w-[70%] h-[250px] md:h-[400px] object-cover"
                     alt={newsLayoutArticles[0].title} // Sử dụng tiêu đề làm alt
                   />
-                  <div className=" w-full md:w-[45%] p-4 overflow-hidden">
-                    <h3 className="font-semibold text-lg">
-                      ID: {newsLayoutArticles[0].id}
-                    </h3>
-                    <h3 className="font-semibold text-lg">
+                  <div className=" w-full md:w-[45%] md:h-[145px] pl-4 ">
+                    <h3 className="font-semibold text-lg overflow-hidden">
                       {newsLayoutArticles[0].title}
                     </h3>
-                    <p className="whitespace-normal break-words">
+                    <p className="whitespace-normal text-[13px] h-[165px] pt-3 break-words overflow-hidden text-ellipsis ">
                       {newsLayoutArticles[0].description}
                     </p>
                   </div>
@@ -83,9 +80,16 @@ const NewsLayout = () => {
                   key={tintuc.id}
                   className="w-full"
                 >
-                  <div className=" p-4 overflow-hidden whitespace-normal break-words">
-                    <h3>{tintuc.title}</h3>
-                    <p className="h-[224px] text-[13px] overflow-hidden text-ellipsis line-clamp-3">
+                  <div className=" overflow-hidden whitespace-normal break-words">
+                    <img
+                      src={tintuc.image} // Hiển thị hình ảnh của tin tức đầu tiên
+                      className="w-full h-[250px] md:h-[210px] object-cover"
+                      alt={tintuc.title} // Sử dụng tiêu đề làm alt
+                    />
+                    <span className=" text-[16px] font-bold pt-3 pl-3 pb-1 overflow-hidden text-ellipsis line-clamp-3">
+                      {tintuc.title}
+                    </span>
+                    <p className="h-[100px] ml-3 mr-3 text-[13px] overflow-hidden text-ellipsis">
                       {tintuc.description}
                     </p>
                   </div>
@@ -101,7 +105,7 @@ const NewsLayout = () => {
         {tintucs.length > 0 ? (
           <div
             className=" relative w-full md:w-[23%] flex flex-col justify-start mt-4 md:mt-0 "
-            style={{ maxHeight: "700px" }} // Giới hạn chiều cao
+            style={{ maxHeight: "800px" }}
           >
             <h2 className="text-3xl font-semibold absolute top-2 text-red-500 p-2 pr-14">
               Tin tức HOT
@@ -109,9 +113,8 @@ const NewsLayout = () => {
             <div
               className="mt-16 overflow-hidden"
               ref={scrollRef}
-              style={{ maxHeight: "620px" }}
+              style={{ maxHeight: "700px" }}
             >
-              {/* Khoảng trống cho tiêu đề */}
               {tintucs.map((tintuc, index) => (
                 <Link
                   to={`/tintuc/${tintuc.id}`}
@@ -121,10 +124,12 @@ const NewsLayout = () => {
                   <div key={index} className="flex items-center p-2">
                     <img
                       src={tintuc.image}
-                      className="w-[100px] h-[80px]"
+                      className="w-[100px] h-[80px] object-cover"
                       alt=""
                     />
-                    <p className="ml-3">{tintuc.title}</p>
+                    <p className="ml-3 text-[13px] overflow-hidden text-ellipsis line-clamp-3">
+                      {tintuc.title}
+                    </p>
                   </div>
                 </Link>
               ))}
