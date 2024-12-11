@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 const Fulltintuc = ({ tintucs }) => {
   return (
-    <div className="flex flex-wrap gap-4">
+    <div className="flex flex-wrap gap-4 md:w-full w-[350px]">
       {tintucs.map((tintuc) => (
         <Link
           key={tintuc.id}

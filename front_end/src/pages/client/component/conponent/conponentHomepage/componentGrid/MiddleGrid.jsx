@@ -8,7 +8,7 @@ const MiddleGrid = ({ banners }) => {
 
   // Kiểm tra và hiển thị ảnh nếu có đủ số lượng
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8">
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8 md:w-full w-[350px]">
       {/* Hàng đầu tiên */}
       <div className="h-[150px]">
         <img

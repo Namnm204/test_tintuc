@@ -4,7 +4,7 @@ const Endpage1 = ({ tintucs }) => {
   const tin24 = tintucs.slice(23, 27);
   const tin35 = tintucs.slice(23, 35);
   return (
-    <div className="grid grid-cols-1 gap-4 md:mr-4 relative">
+    <div className="grid grid-cols-1 gap-4 md:mr-4 relative md:w-full w-[335px]">
       <div className="grid grid-cols-2 sm:grid-cols-3 pb-8  md:grid-cols-4 md:gap-4 gap-8">
         {tin24.slice(0, 4).map((tintuc, index) => (
           <div key={index} className="md:w-full w-[110%] h-[180px]">

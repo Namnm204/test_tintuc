@@ -35,13 +35,13 @@ const Endpage2 = () => {
   }
 
   return (
-    <div className="mt-8 mb-8">
+    <div className="mt-8 mb-8 md:w-full w-[390px] md:ml-0 ml-[-20px]">
       {banners.length > 0 ? (
         <div>
           <img
             src={banners[1].imageSale}
             alt={`Banner ${banners[1].id}`}
-            className="md:w-full w-[100%] h-[130px] mx-auto"
+            className="md:w-full w-[90%] h-[130px] mx-auto"
           />
         </div>
       ) : (
