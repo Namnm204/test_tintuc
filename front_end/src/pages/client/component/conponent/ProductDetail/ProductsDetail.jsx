@@ -8,6 +8,7 @@ const ProductsDetail = () => {
   const { id } = useParams(); // Get the product ID from the URL
   const [product, setProduct] = useState(null);
   const [randomNews, setRandomNews] = useState([]);
+  const [banners, setBanners] = useState([]);
 
   // Fetch product details based on id
   const fetchProductDetails = async () => {
@@ -31,6 +32,27 @@ const ProductsDetail = () => {
       console.error("Failed to fetch product details:", error);
     }
   };
+
+  // banner
+  useEffect(() => {
+    // Fetch banners from your API
+    async function fetchBanners() {
+      try {
+        const response = await fetch(
+          "https://my-worker.namdaynay001.workers.dev/banners"
+        );
+        if (!response.ok) {
+          throw new Error("Failed to fetch banners");
+        }
+        const data = await response.json();
+        setBanners(data); // Assuming the data is an array of banners with image URLs
+      } catch (error) {
+        console.error("Error fetching banners:", error);
+      }
+    }
+
+    fetchBanners();
+  }, []);
 
   useEffect(() => {
     fetchProductDetails();
@@ -66,7 +88,7 @@ const ProductsDetail = () => {
     <div className="font-sans bg-gray-50">
       <Header />
       <div className="md:w-[75%] mx-auto px-4 py-10">
-        {/* Main Content Area */}
+        {/* conent */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Left Column: Article Content */}
           <div className="md:col-span-2 space-y-6">
@@ -169,56 +191,25 @@ const ProductsDetail = () => {
           </div>
         </div>
 
-        {/* Right Column: Sidebar */}
+        {/* end */}
         <div className="space-y-4 mt-16">
           {/* Banner */}
-          <div className="flex space-x-4">
+          <div className="grid md:grid-cols-3 grid-cols-1 gap-4">
             <img
-              src="../../../../../../public/banner.jpg"
+              src="../../../../../../public/imagessale.jpg"
               alt="Advertisement 1"
               className="w-full rounded-lg shadow-md"
             />
             <img
-              src="../../../../../../public/banner.jpg"
+              src="../../../../../../public/imagessale.jpg"
               alt="Advertisement 2"
               className="w-full rounded-lg shadow-md"
             />
             <img
-              src="../../../../../../public/banner.jpg"
+              src="../../../../../../public/imagessale.jpg"
               alt="Advertisement 3"
               className="w-full rounded-lg shadow-md"
             />
-          </div>
-
-          {/* Bình luận */}
-          <div className="bg-yellow-400 p-6 rounded-lg">
-            <h3 className="text-xl font-semibold text-gray-800 mb-4">
-              Bình luận
-            </h3>
-            <div className="space-y-4">
-              {/* Input Field */}
-              <div className="space-y-2">
-                <label htmlFor="comment" className="text-sm text-gray-600">
-                  Nhập bình luận
-                </label>
-                <input
-                  id="comment"
-                  type="text"
-                  className="w-full p-2 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  placeholder="Nhập bình luận..."
-                />
-              </div>
-
-              {/* Submit Button */}
-              <button className="w-16 bg-blue-500 text-white py-2 rounded-lg mt-4 hover:bg-blue-600 transition">
-                Gửi
-              </button>
-            </div>
-          </div>
-
-          {/* Additional Information Box */}
-          <div className="bg-gray-300 p-4 rounded-lg">
-            <p className="text-center text-gray-600">Bình luận</p>
           </div>
         </div>
       </div>
