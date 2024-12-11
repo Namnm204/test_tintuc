@@ -10,19 +10,23 @@ const HomePage = () => {
   const [banners, setBanners] = useState([]);
 
   useEffect(() => {
-    // Fetch tintucs from your API
     async function fetchTintucs() {
       try {
         const response = await fetch(
           "https://my-worker.namdaynay001.workers.dev/tintucs"
         );
         if (!response.ok) {
-          throw new Error("Failed to fetch tintucs");
+          throw new Error("Failed to fetch banners");
         }
         const data = await response.json();
-        setTintucs(data);
+        // Sắp xếp tin tức theo thời gian giảm dần
+        const sortedData = data.sort(
+          (a, b) => new Date(b.created_at) - new Date(a.created_at)
+        );
+
+        setTintucs(sortedData);
       } catch (error) {
-        console.error("Error fetching tintucs:", error);
+        console.error("Error fetching banners:", error);
       }
     }
 

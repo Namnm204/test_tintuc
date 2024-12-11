@@ -1,0 +1,17 @@
+/* Thêm kiểu cho tất cả các thẻ <a> */
+.content a {
+  color: #1d4ed8; /* Màu xanh (có thể thay đổi theo ý muốn) */
+  text-decoration: none; /* Loại bỏ gạch chân mặc định */
+}
+
+/* Thêm hiệu ứng khi hover vào link */
+.content a:hover {
+  text-decoration: underline; /* Thêm gạch chân khi di chuột vào */
+}
+/* CSS để cho phép ReactQuill thay đổi kích thước */
+.react-quill {
+  resize: both; /* Cho phép thay đổi kích thước cả chiều ngang và dọc */
+  overflow: auto; /* Cho phép cuộn khi nội dung vượt quá kích thước */
+  width: 100%; /* Đảm bảo chiều rộng luôn 100% */
+  min-height: 200px; /* Đặt chiều cao tối thiểu cho editor */
+}

@@ -1,32 +1,30 @@
 export async function handlePost(request, env) {
   try {
-    const requestBody = await request.json(); // Get JSON body
+    const requestBody = await request.json(); // Lấy dữ liệu JSON từ request
     const {
-      title = "", // Gán giá trị mặc định nếu thiếu
+      title = "", // Giá trị mặc định nếu thiếu
       description = "",
       image = "",
+      mota_image = "",
       author = "",
-      category = "",
-      gallery = [], // Mặc định là mảng rỗng
-      content = "",
-      created_at = new Date().toISOString(), // Gán thời gian hiện tại nếu không có
+      content = [],
+      created_at = new Date().toISOString(), // Lấy thời gian hiện tại nếu không có
     } = requestBody;
 
-    // Convert gallery array to JSON string to store it in database
-    const galleryJson = JSON.stringify(gallery);
+    // Chuyển đổi mảng content thành chuỗi JSON để lưu vào cơ sở dữ liệu
+    const contentJson = JSON.stringify(content);
 
-    // Insert new article into the database
+    // Chèn bài viết mới vào cơ sở dữ liệu
     const result = await env.D1.prepare(
-      "INSERT INTO tintucs (title, description, image, author, category, gallery, content, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?)"
+      "INSERT INTO tintucs (title, description, image, mota_image, author, content, created_at) VALUES (?, ?, ?, ?, ?, ?, ?)"
     )
       .bind(
         title,
         description,
         image,
+        mota_image,
         author,
-        category,
-        galleryJson, // Store gallery as JSON string
-        content,
+        contentJson, // Lưu gallery dưới dạng chuỗi JSON
         created_at
       )
       .run();
@@ -41,7 +39,7 @@ export async function handlePost(request, env) {
       },
     });
   } catch (error) {
-    console.error("POST request failed:", error); // Log detailed error
-    return new Response(`Error: ${error.message}`, { status: 500 });
+    console.error("POST request failed:", error); // Ghi lại lỗi chi tiết
+    return new Response(`Lỗi: ${error.message}`, { status: 500 });
   }
 }

@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 
 /* eslint-disable react/prop-types */
-const Endpage3 = ({ tintucs, banners }) => {
+const Endpage3 = ({ tintucs }) => {
   const largeCard = tintucs[0]; // Tin lớn
   const smallCards = tintucs.slice(1); // Các tin nhỏ còn lại
 
@@ -17,7 +17,6 @@ const Endpage3 = ({ tintucs, banners }) => {
               className="w-[200px] md:w-[390px] h-[200px] object-cover"
             />
             <p className="mt-2 w-full md:w-[390px] px-2 text-[16px]  overflow-hidden text-ellipsis md:line-clamp-2 line-clamp-4">
-              {largeCard.id || "Tiêu đề tin tức lớn"}
               {largeCard.title || "Tiêu đề tin tức lớn"}
             </p>
           </Link>
@@ -33,7 +32,6 @@ const Endpage3 = ({ tintucs, banners }) => {
               className="w-full md:w-[190px] h-[100px] object-cover"
             />
             <p className="mt-2 text-left px-2 text-sm line-clamp-3">
-              {tintuc.id || `Tiêu đề tin tức ${index + 2}`}
               {tintuc.title || `Tiêu đề tin tức ${index + 2}`}
             </p>
           </Link>

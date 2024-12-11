@@ -1,6 +1,4 @@
 const MiddleGrid = ({ banners }) => {
-  console.log(banners);
-
   // Chuyển đổi chuỗi JSON thành mảng, nếu có
   const imageEndpageArray = banners[0]
     ? JSON.parse(banners[0].imageEndpage)

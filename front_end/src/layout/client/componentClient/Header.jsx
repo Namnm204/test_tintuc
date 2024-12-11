@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { FaUserCircle, FaSearch, FaBars, FaTimes } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   const [isSearchVisible, setIsSearchVisible] = useState(false);
@@ -28,11 +29,13 @@ const Header = () => {
       <div className="w-full md:w-[90%] mx-auto flex flex-col md:flex-row items-center justify-between">
         {/* Logo */}
         <div className="flex justify-center items-center w-full md:w-[230px] border-r pr-4">
-          <img
-            src="../../../public/logo.png"
-            className="w-[40%] md:w-[100%]"
-            alt="Logo"
-          />
+          <Link to={`/`}>
+            <img
+              src="../../../public/logo.png"
+              className="w-[40%] md:w-[100%]"
+              alt="Logo"
+            />
+          </Link>
         </div>
 
         {/* Ngày tháng */}

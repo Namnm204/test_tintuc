@@ -17,7 +17,12 @@ const NewsLayout = () => {
           throw new Error("Failed to fetch banners");
         }
         const data = await response.json();
-        setTintucs(data);
+        // Sắp xếp tin tức theo thời gian giảm dần
+        const sortedData = data.sort(
+          (a, b) => new Date(b.created_at) - new Date(a.created_at)
+        );
+
+        setTintucs(sortedData);
       } catch (error) {
         console.error("Error fetching banners:", error);
       }
@@ -104,16 +109,16 @@ const NewsLayout = () => {
         {/* Phần bên phải slide chay */}
         {tintucs.length > 0 ? (
           <div
-            className=" relative w-full md:w-[23%] flex flex-col justify-start mt-4 md:mt-0 "
+            className=" relative w-full md:w-[23%] flex flex-col justify-start mt-4 md:mt-0 overflow-y-auto"
             style={{ maxHeight: "800px" }}
           >
             <h2 className="text-3xl font-semibold absolute top-2 text-red-500 p-2 pr-14">
               Tin tức HOT
             </h2>
             <div
-              className="mt-16 overflow-hidden"
+              className="mt-16 overflow-y-auto" // Thêm overflow-y-auto để kích hoạt thanh cuộn dọc
               ref={scrollRef}
-              style={{ maxHeight: "700px" }}
+              style={{ maxHeight: "700px" }} // Giới hạn chiều cao của vùng cuộn
             >
               {tintucs.map((tintuc, index) => (
                 <Link
@@ -121,13 +126,13 @@ const NewsLayout = () => {
                   key={tintuc.id}
                   className="w-full"
                 >
-                  <div key={index} className="flex items-center p-2">
+                  <div key={index} className="flex items-center p-2 border-b">
                     <img
                       src={tintuc.image}
-                      className="w-[100px] h-[80px] object-cover"
-                      alt=""
+                      className="w-[100px] h-[80px] object-cover rounded-md"
+                      alt="Tin tức"
                     />
-                    <p className="ml-3 text-[13px] overflow-hidden text-ellipsis line-clamp-3">
+                    <p className="ml-3 text-[13px] text-gray-700 overflow-hidden text-ellipsis line-clamp-3">
                       {tintuc.title}
                     </p>
                   </div>

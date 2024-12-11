@@ -13,13 +13,13 @@ const ProductDetailPage = () => {
         `https://my-worker.namdaynay001.workers.dev/tintucs/${id}`
       );
 
-      // Check if 'gallery' is a string and parse it if needed
-      if (typeof response.data.gallery === "string") {
+      // Check if 'content' is a string and parse it if needed
+      if (typeof response.data.content === "string") {
         try {
-          response.data.gallery = JSON.parse(response.data.gallery);
+          response.data.content = JSON.parse(response.data.content);
         } catch (e) {
-          console.error("Error parsing gallery JSON:", e);
-          response.data.gallery = []; // In case the gallery is malformed
+          console.error("Error parsing content JSON:", e);
+          response.data.content = []; // In case the content is malformed
         }
       }
 
@@ -53,9 +53,7 @@ const ProductDetailPage = () => {
             <h3>Tiêu đề:</h3>
             {product.title}
           </h1>
-          <p className="text-xl text-gray-600 mb-4">
-            Danh mục: {product.category}
-          </p>
+
           <p className="text-base text-gray-500 mb-6">
             Mô tả: {product.description}
           </p>
@@ -65,29 +63,38 @@ const ProductDetailPage = () => {
             Tác giả: {product.author}
           </p>
           <div className="mb-4">
-            <h3 className="font-semibold"></h3>
-            <p>Nội dung: {product.content}</p>
-          </div>
-
-          {/* Gallery Section */}
-          <div className="mt-12">
-            <h2 className="text-2xl font-semibold text-gray-800 mb-4">
-              Ảnh phụ
-            </h2>
-            <div className="flex space-x-4">
-              {Array.isArray(product.gallery) && product.gallery.length > 0 ? (
-                product.gallery.map((image, index) => (
-                  <img
-                    key={index}
-                    src={image}
-                    alt={`Gallery image ${index + 1}`}
-                    className="w-24 h-24 object-cover rounded-md border"
+            <h3 className="font-semibold">Nội dung:</h3>
+            {product.content &&
+            Array.isArray(product.content) &&
+            product.content.length > 0 ? (
+              product.content.map((contentItem, index) => (
+                <div key={index} className="mb-6">
+                  <p
+                    className="text-lg text-gray-700 mb-3 content"
+                    dangerouslySetInnerHTML={{
+                      __html: contentItem.value,
+                    }}
                   />
-                ))
-              ) : (
-                <p>No gallery images available.</p>
-              )}
-            </div>
+                  <div className="flex items-start space-x-4">
+                    {contentItem.image && (
+                      <img
+                        src={contentItem.image}
+                        alt={`Content image ${index + 1}`}
+                        className="w-32 h-32 object-cover rounded-md border border-gray-300 shadow-sm"
+                      />
+                    )}
+                    <p className="text-sm text-gray-600">
+                      Mô tả ảnh:
+                      <span className="italic">
+                        {contentItem.mota_image_content}
+                      </span>
+                    </p>
+                  </div>
+                </div>
+              ))
+            ) : (
+              <p>No content available.</p>
+            )}
           </div>
 
           {/* Created At */}
