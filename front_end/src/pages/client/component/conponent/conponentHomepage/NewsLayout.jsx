@@ -57,7 +57,10 @@ const NewsLayout = () => {
         {newsLayoutArticles.length > 0 ? (
           <div className="w-full md:w-[75%] pr-0 md:pr-4">
             {/* Phần trên */}
-            <Link to={`/tintuc/${newsLayoutArticles[0].id}`} className="w-full">
+            <Link
+              to={`/tintuc/${newsLayoutArticles[0].slug}`}
+              className="w-full"
+            >
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="col-span-1 md:col-span-2 flex flex-col md:flex-row">
                   <img
@@ -81,8 +84,8 @@ const NewsLayout = () => {
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-4">
               {newsLayoutArticles.slice(1, 4).map((tintuc) => (
                 <Link
-                  to={`/tintuc/${tintuc.id}`}
-                  key={tintuc.id}
+                  to={`/tintuc/${tintuc.slug}`}
+                  key={tintuc.slug}
                   className="w-full"
                 >
                   <div className=" overflow-hidden whitespace-normal break-words">
@@ -122,8 +125,8 @@ const NewsLayout = () => {
             >
               {tintucs.map((tintuc, index) => (
                 <Link
-                  to={`/tintuc/${tintuc.id}`}
-                  key={tintuc.id}
+                  to={`/tintuc/${tintuc.slug}`}
+                  key={tintuc.slug}
                   className="w-full"
                 >
                   <div key={index} className="flex items-center p-2 border-b">

@@ -1,8 +1,7 @@
 import BottomGrid from "./componentGrid/BottomGrid ";
+import ImageCardList from "./componentGrid/ImageCardList";
 import MiddleGrid from "./componentGrid/MiddleGrid";
 import TopGrid from "./componentGrid/TopGrid";
-import ImageCardList from "./componentGrid/ImageCardList";
-import Banner from "./Banner";
 import Endpage2 from "./componentTintuc/Endpage2";
 /* eslint-disable react/prop-types */
 const GridLayout = ({ tintucs, banners }) => {

@@ -17,7 +17,7 @@ function App() {
       <Route path="" element={<Client />}></Route>
       <Route path="login" element={<Login />}></Route>
       <Route path="tintuc">
-        <Route path=":id" element={<ProductsDetail />} />
+        <Route path=":slug" element={<ProductsDetail />} />
       </Route>
 
       <Route

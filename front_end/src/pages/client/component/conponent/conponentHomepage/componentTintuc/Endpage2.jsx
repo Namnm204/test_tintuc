@@ -40,7 +40,7 @@ const Endpage2 = () => {
         <div>
           <img
             src={banners[1].imageSale}
-            alt={`Banner ${banners[1].id}`}
+            alt={`Banner ${banners[1].slug}`}
             className="md:w-full w-[90%] h-[130px] mx-auto"
           />
         </div>

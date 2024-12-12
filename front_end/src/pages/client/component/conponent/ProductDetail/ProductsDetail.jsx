@@ -5,7 +5,7 @@ import axios from "axios";
 import { Link, useParams } from "react-router-dom";
 
 const ProductsDetail = () => {
-  const { id } = useParams(); // Get the product ID from the URL
+  const { slug } = useParams(); // Get the product ID from the URL
   const [product, setProduct] = useState(null);
   const [randomNews, setRandomNews] = useState([]);
   const [banners, setBanners] = useState([]);
@@ -14,7 +14,7 @@ const ProductsDetail = () => {
   const fetchProductDetails = async () => {
     try {
       const response = await axios.get(
-        `https://my-worker.namdaynay001.workers.dev/tintucs/${id}`
+        `https://my-worker.namdaynay001.workers.dev/tintucs/${slug}`
       );
 
       // Check if 'content' is a string and parse it if needed
@@ -56,7 +56,7 @@ const ProductsDetail = () => {
 
   useEffect(() => {
     fetchProductDetails();
-  }, [id]);
+  }, [slug]);
 
   // Fetch tin tức ngẫu nhiên
   const fetchRandomNews = async () => {
@@ -80,7 +80,7 @@ const ProductsDetail = () => {
   useEffect(() => {
     fetchProductDetails();
     fetchRandomNews();
-  }, [id]);
+  }, [slug]);
 
   if (!product) return <p>Loading...</p>;
 
@@ -169,7 +169,7 @@ const ProductsDetail = () => {
                     key={index}
                     className="flex space-x-4 p-4 rounded-lg hover:bg-gray-100 transition"
                   >
-                    <Link to={`/tintuc/${news.id}`} className="flex gap-4">
+                    <Link to={`/tintuc/${news.slug}`} className="flex gap-4">
                       <img
                         src={news.image}
                         alt={news.title}

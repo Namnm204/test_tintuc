@@ -11,7 +11,7 @@ const MiddleGrid = ({ banners }) => {
       <div className="h-[150px]">
         <img
           src={imageEndpageArray[0] || "/path/to/default/image1.jpg"}
-          alt={`Banner ${banners[0]?.id}`}
+          alt={`Banner ${banners[0]?.slug}`}
           className="w-full h-full object-cover"
         />
       </div>

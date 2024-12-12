@@ -1,12 +1,12 @@
-import { handleOptions } from "./src/methods/handleOptions";
-import { handleGet } from "./src/methods/handleGet";
-import { handlePost } from "./src/methods/handlePost";
-import { handleGetById } from "./src/methods/handleGetById";
-import { handleDelete } from "./src/methods/handleDelete";
-import { handleLogin } from "./src/methods/handleLogin";
-import { handlePostBanner } from "./src/banner/handlePostBanner";
-import { GetBanner } from "./src/banner/Get";
 import { handleDeleteBanner } from "./src/banner/Dete";
+import { GetBanner } from "./src/banner/Get";
+import { handlePostBanner } from "./src/banner/handlePostBanner";
+import { handleDelete } from "./src/methods/handleDelete";
+import { handleGet } from "./src/methods/handleGet";
+import { handleGetBySlug } from "./src/methods/handleGetById";
+import { handleLogin } from "./src/methods/handleLogin";
+import { handleOptions } from "./src/methods/handleOptions";
+import { handlePost } from "./src/methods/handlePost";
 
 export default {
   async fetch(request, env) {
@@ -29,7 +29,7 @@ export default {
 
     // Handle GET request for specific item by ID (e.g., /tintucs/:id)
     if (request.method === "GET" && url.pathname.includes("/tintucs/")) {
-      return handleGetById(env, request);
+      return handleGetBySlug(env, request);
     }
 
     // Handle POST request for login

@@ -1,32 +1,38 @@
-export async function handleGetById(env, request) {
+export async function handleGetBySlug(env, request) {
   try {
-    // Extract the 'id' from the URL path
+    // Lấy 'slug' từ URL path
     const url = new URL(request.url);
-    const id = url.pathname.split("/").pop(); // Assumes the URL is like /tintucs/:id
+    const slug = url.pathname.split("/").pop(); // Giả định URL dạng /tintucs/:slug
 
-    // Prepare the SQL query to fetch the news by ID
+    if (!slug) {
+      return new Response("Slug is required", { status: 400 });
+    }
+
+    // Truy vấn SQL để lấy tin tức theo slug
     const { results } = await env.D1.prepare(
-      "SELECT * FROM tintucs WHERE id = ?"
+      "SELECT * FROM tintucs WHERE slug = ?"
     )
-      .bind(id)
+      .bind(slug)
       .all();
 
-    // If no result found, return a 404 error
-    if (results.length === 0) {
+    // Kiểm tra nếu không tìm thấy kết quả
+    if (!results || results.length === 0) {
       return new Response("News not found", { status: 404 });
     }
 
-    // Return the specific news data as JSON
+    // Trả về dữ liệu tin tức ở dạng JSON
     return new Response(JSON.stringify(results[0]), {
       headers: {
         "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Origin": "*", // Cho phép CORS
         "Access-Control-Allow-Methods": "GET, POST, DELETE",
         "Access-Control-Allow-Headers": "Content-Type",
       },
     });
   } catch (error) {
-    console.error("GET by ID Error:", error);
-    return new Response(`Error: ${error.message}`, { status: 500 });
+    console.error("GET by Slug Error:", error);
+    return new Response(`Internal Server Error: ${error.message}`, {
+      status: 500,
+    });
   }
 }
