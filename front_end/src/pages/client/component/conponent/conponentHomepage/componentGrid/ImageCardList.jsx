@@ -18,10 +18,10 @@ const ImageCardList = ({ tintucs, banners }) => {
               alt={largeCard.title || "Tin tức"}
               className="w-[390px] h-[200px] object-cover"
             />
-            <p className="mt-2 px-2 text-[16px] break-words overflow-hidden text-ellipsis line-clamp-2">
+            <p className="mt-2 md:px-2 text-[16px] break-words overflow-hidden text-ellipsis line-clamp-2">
               {largeCard.title || "Tiêu đề tin tức lớn"}
             </p>
-            <p className="ml-2 text-[10px] text-gray-400">
+            <p className="md:ml-2 text-[10px] text-gray-400">
               Ngày đăng: {largeCard.created_at}
             </p>
           </Link>
@@ -37,10 +37,10 @@ const ImageCardList = ({ tintucs, banners }) => {
               alt={tintuc.title || `Tin tức ${index + 2}`}
               className=" w-full md:w-[190px] h-[200px] md:h-[100px] object-cover"
             />
-            <p className="mt-2 text-left px-2 text-sm break-words overflow-hidden text-ellipsis line-clamp-3">
+            <p className="mt-2 text-left md:px-2 text-sm break-words overflow-hidden text-ellipsis line-clamp-3">
               {tintuc.title || `Tiêu đề tin tức ${index + 2}`}
             </p>
-            <p className="ml-2 text-[10px] text-gray-400">
+            <p className="md:ml-2 text-[10px] text-gray-400">
               Ngày đăng: {tintuc.created_at}
             </p>
             {/* Add separator except after the last card */}

@@ -68,7 +68,7 @@ const NewsLayout = () => {
                     className="w-full md:w-[70%] h-[250px] md:h-[400px] object-cover"
                     alt={newsLayoutArticles[0].title} // Sử dụng tiêu đề làm alt
                   />
-                  <div className=" w-full md:w-[45%] md:h-[145px] pl-4 ">
+                  <div className=" w-full md:w-[45%] md:h-[145px] md:pl-4 ">
                     <h3 className="font-semibold text-lg overflow-hidden">
                       {newsLayoutArticles[0].title}
                     </h3>
@@ -97,13 +97,13 @@ const NewsLayout = () => {
                       className="w-full h-[250px] md:h-[210px] object-cover"
                       alt={tintuc.title} // Sử dụng tiêu đề làm alt
                     />
-                    <span className=" text-[16px] font-bold pt-3 pl-3 pb-1 overflow-hidden text-ellipsis line-clamp-3">
+                    <span className=" text-[16px] font-bold pt-3 md:pl-3 pb-1 overflow-hidden text-ellipsis line-clamp-3">
                       {tintuc.title}
                     </span>
-                    <p className="pl-3 pb-1 text-[10px] text-gray-400">
+                    <p className="md:pl-3 pb-1 text-[10px] text-gray-400">
                       Ngày đăng: {newsLayoutArticles[0].created_at}
                     </p>
-                    <p className="h-[100px] ml-3 mr-3 text-[13px] overflow-hidden text-ellipsis">
+                    <p className="h-[100px] md:ml-3 mr-3 text-[13px] overflow-hidden text-ellipsis">
                       {tintuc.description}
                     </p>
                   </div>
@@ -142,10 +142,10 @@ const NewsLayout = () => {
                       alt="Tin tức"
                     />
                     <div>
-                      <p className="ml-3 text-[13px] text-gray-700 overflow-hidden text-ellipsis line-clamp-3">
+                      <p className="md:ml-3 text-[13px] text-gray-700 overflow-hidden text-ellipsis line-clamp-3">
                         {tintuc.title}
                       </p>
-                      <p className="ml-3 text-[10px] text-gray-400">
+                      <p className="md:ml-3 text-[10px] text-gray-400">
                         {newsLayoutArticles[0].created_at}
                       </p>
                     </div>

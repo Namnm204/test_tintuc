@@ -8,7 +8,6 @@ const ProductsDetail = () => {
   const { slug } = useParams(); // Get the product ID from the URL
   const [product, setProduct] = useState(null);
   const [randomNews, setRandomNews] = useState([]);
-  const [banners, setBanners] = useState([]);
 
   // Fetch product details based on id
   const fetchProductDetails = async () => {
@@ -33,27 +32,6 @@ const ProductsDetail = () => {
     }
   };
 
-  // banner
-  useEffect(() => {
-    // Fetch banners from your API
-    async function fetchBanners() {
-      try {
-        const response = await fetch(
-          "https://my-worker.namdaynay001.workers.dev/banners"
-        );
-        if (!response.ok) {
-          throw new Error("Failed to fetch banners");
-        }
-        const data = await response.json();
-        setBanners(data); // Assuming the data is an array of banners with image URLs
-      } catch (error) {
-        console.error("Error fetching banners:", error);
-      }
-    }
-
-    fetchBanners();
-  }, []);
-
   useEffect(() => {
     fetchProductDetails();
   }, [slug]);
@@ -67,11 +45,11 @@ const ProductsDetail = () => {
       const allNews = response.data;
       console.log(allNews);
 
-      const filteredNews = allNews.filter((news) => news.id !== id);
+      const filteredNews = allNews.filter((news) => news.id !== slug);
 
       const shuffledNews = filteredNews.sort(() => 0.5 - Math.random());
 
-      setRandomNews(shuffledNews.slice(0, 10));
+      setRandomNews(shuffledNews.slice(0, 8));
     } catch (error) {
       console.error("Failed to fetch random news:", error);
     }
@@ -114,7 +92,7 @@ const ProductsDetail = () => {
               <img
                 src={product.image}
                 alt="Product Image"
-                className="md:h-[500px] w-full rounded-lg shadow-md"
+                className="md:h-[500px] h-[250px] w-full rounded-lg shadow-md"
               />
               <p className="text-center text-[13px] mt-3">
                 {product.mota_image}
@@ -139,7 +117,7 @@ const ProductsDetail = () => {
                         <img
                           src={contentItem.image}
                           alt={`Content image ${index + 1}`}
-                          className="md:h-[500px] w-full rounded-lg shadow-md"
+                          className="md:h-[500px] h-[250px] w-full rounded-lg shadow-md"
                         />
                         <p className="text-center text-[13px] mt-3">
                           {contentItem.mota_image_content}
@@ -156,7 +134,7 @@ const ProductsDetail = () => {
 
           {/* Right Column: Sidebar */}
           <div className="space-y-8">
-            {/* Featured News Section */}
+            {/* tin nổi bật */}
             <div>
               <h3 className="text-xl font-semibold text-gray-800">
                 Tin tức nổi bật
@@ -178,6 +156,9 @@ const ProductsDetail = () => {
                       <div className="flex flex-col justify-center">
                         <p className="text-lg font-semibold text-gray-800 overflow-hidden text-ellipsis line-clamp-2">
                           {news.title}
+                        </p>
+                        <p className="pb-1 text-[10px] text-gray-400">
+                          Ngày đăng: {news.created_at}
                         </p>
                         <p className="text-sm text-gray-600">
                           Xem thêm tin tức...
