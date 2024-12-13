@@ -125,8 +125,8 @@ function BannerList() {
   }
 
   return (
-    <div className="p-6 bg-white rounded-lg shadow-md">
-      <h1 className="text-2xl font-bold mb-4">Banner List</h1>
+    <div className="md:p-6 bg-white rounded-lg shadow-md mt-14">
+      <h1 className="text-2xl font-bold mb-4 text-center">Banner List</h1>
       <button
         onClick={() => setShowModal(true)}
         className="mb-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
@@ -231,7 +231,7 @@ function BannerList() {
 
       {showModal && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
-          <div className="bg-white p-6 rounded shadow-lg w-1/3">
+          <div className="bg-white p-6 rounded shadow-lg md:w-1/3">
             <h2 className="text-xl font-bold mb-4">Thêm Banner mới</h2>
             <div className="mb-4">
               <label className="block mb-2">Image Banner:</label>
@@ -310,7 +310,7 @@ function BannerList() {
                   Thêm
                 </button>
               </div>
-              <div className="absolute md:ml-[600px] md:mt-[-400px]">
+              <div className="absolute hidden md:block md:ml-[600px] md:mt-[-400px]">
                 <img
                   className="w-[90%]"
                   src="../../../../public/demo.png"

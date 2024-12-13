@@ -72,6 +72,9 @@ const NewsLayout = () => {
                     <h3 className="font-semibold text-lg overflow-hidden">
                       {newsLayoutArticles[0].title}
                     </h3>
+                    <p className="text-[10px] text-gray-400">
+                      Ngày đăng: {newsLayoutArticles[0].created_at}
+                    </p>
                     <p className="whitespace-normal text-[13px] h-[165px] pt-3 break-words overflow-hidden text-ellipsis ">
                       {newsLayoutArticles[0].description}
                     </p>
@@ -97,6 +100,9 @@ const NewsLayout = () => {
                     <span className=" text-[16px] font-bold pt-3 pl-3 pb-1 overflow-hidden text-ellipsis line-clamp-3">
                       {tintuc.title}
                     </span>
+                    <p className="pl-3 pb-1 text-[10px] text-gray-400">
+                      Ngày đăng: {newsLayoutArticles[0].created_at}
+                    </p>
                     <p className="h-[100px] ml-3 mr-3 text-[13px] overflow-hidden text-ellipsis">
                       {tintuc.description}
                     </p>
@@ -135,9 +141,14 @@ const NewsLayout = () => {
                       className="w-[100px] h-[80px] object-cover rounded-md"
                       alt="Tin tức"
                     />
-                    <p className="ml-3 text-[13px] text-gray-700 overflow-hidden text-ellipsis line-clamp-3">
-                      {tintuc.title}
-                    </p>
+                    <div>
+                      <p className="ml-3 text-[13px] text-gray-700 overflow-hidden text-ellipsis line-clamp-3">
+                        {tintuc.title}
+                      </p>
+                      <p className="ml-3 text-[10px] text-gray-400">
+                        {newsLayoutArticles[0].created_at}
+                      </p>
+                    </div>
                   </div>
                 </Link>
               ))}

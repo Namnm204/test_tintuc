@@ -45,7 +45,7 @@ function App() {
           }
         />
         <Route
-          path=":id"
+          path=":slug"
           element={
             <PrivateRoute>
               <ProductDetailPage />

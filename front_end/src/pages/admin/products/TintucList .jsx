@@ -85,8 +85,10 @@ const TintucList = () => {
   if (error) return <div>Error: {error}</div>;
 
   return (
-    <div className="p-6">
-      <h1 className="text-2xl font-semibold mb-4">tintuc List</h1>
+    <div className="md:p-6">
+      <h1 className="text-2xl font-semibold mb-4 text-center">
+        Danh sách tin tức
+      </h1>
       <Link
         to="/admin/add"
         className="inline-block bg-blue-500 text-white px-4 py-2 rounded mb-4 hover:bg-blue-600"
@@ -105,9 +107,9 @@ const TintucList = () => {
         Delete Selected
       </button>
       {currentTintucs.length === 0 ? (
-        <div className="text-gray-600">No tintucs available.</div>
+        <div className="text-gray-600">Không có tin tức</div>
       ) : (
-        <table className="min-w-full table-auto border-collapse bg-white shadow-md rounded-lg overflow-hidden mt-4">
+        <table className="min-w-full  table-auto border-collapse bg-white shadow-md rounded-lg overflow-hidden mt-4">
           <thead className="bg-blue-500 text-white">
             <tr>
               <th className="py-3 px-4 text-sm font-medium">
@@ -151,7 +153,7 @@ const TintucList = () => {
                 </td>
                 <td className="py-3 px-4 text-center flex">
                   <Link
-                    to={`/admin/${tintuc.id}`}
+                    to={`/admin/${tintuc.slug}`}
                     className="ml-2 bg-green-500 text-white py-1 px-3 rounded-md hover:bg-green-600 transition duration-300"
                   >
                     View

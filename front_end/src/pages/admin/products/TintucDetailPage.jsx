@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom"; // To fetch the product ID from URL params
+import { useParams } from "react-router-dom"; // To fetch the product slug from URL params
 import axios from "axios";
 
 const ProductDetailPage = () => {
-  const { id } = useParams();
+  const { slug } = useParams();
   const [product, setProduct] = useState(null);
 
-  // Fetch product details based on id
+  // Fetch product details based on slug
   const fetchProductDetails = async () => {
     try {
       const response = await axios.get(
-        `https://my-worker.namdaynay001.workers.dev/tintucs/${id}`
+        `https://my-worker.namdaynay001.workers.dev/tintucs/${slug}`
       );
 
       // Check if 'content' is a string and parse it if needed
@@ -31,19 +31,19 @@ const ProductDetailPage = () => {
 
   useEffect(() => {
     fetchProductDetails();
-  }, [id]);
+  }, [slug]);
 
   if (!product) return <p>Loading...</p>;
 
   return (
-    <div className="container mx-auto p-6">
+    <div className="container mx-auto p-6 md:mt-0 mt-12">
       <div className="flex flex-col md:flex-row">
         {/* Product Image Section */}
         <div className="md:w-1/2 mb-6 md:mb-0">
           <img
             src={product.image}
             alt={product.title}
-            className="w-[60%] h-auto rounded-lg shadow-lg"
+            className="md:w-[60%] w-full h-auto rounded-lg shadow-lg"
           />
         </div>
 
