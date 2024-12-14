@@ -97,9 +97,9 @@ const NewsLayout = () => {
                       className="w-full h-[250px] md:h-[210px] object-cover"
                       alt={tintuc.title} // Sử dụng tiêu đề làm alt
                     />
-                    <span className=" text-[16px] font-bold pt-3 md:pl-3 pb-1 overflow-hidden text-ellipsis line-clamp-3">
+                    <h1 className=" text-[16px] font-bold pt-3 md:pl-3 pb-1 overflow-hidden text-ellipsis line-clamp-3">
                       {tintuc.title}
-                    </span>
+                    </h1>
                     <p className="md:pl-3 pb-1 text-[10px] text-gray-400">
                       Ngày đăng: {newsLayoutArticles[0].created_at}
                     </p>
@@ -142,9 +142,9 @@ const NewsLayout = () => {
                       alt="Tin tức"
                     />
                     <div>
-                      <p className="md:ml-3 text-[13px] text-gray-700 overflow-hidden text-ellipsis line-clamp-3">
+                      <h1 className="md:ml-3 text-[13px] text-gray-700 overflow-hidden text-ellipsis line-clamp-3">
                         {tintuc.title}
-                      </p>
+                      </h1>
                       <p className="md:ml-3 text-[10px] text-gray-400">
                         {newsLayoutArticles[0].created_at}
                       </p>

@@ -12,9 +12,9 @@ const TopGrid = ({ tintucs }) => {
                 alt={tintuc.title || "Tin tức"}
                 className="w-full h-3/4 object-cover"
               />
-              <p className="whitespace-normal h-[55px]  md:h-[80px]  text-[16px] p-2 overflow-hidden text-ellipsis line-clamp-3">
+              <h3 className="whitespace-normal h-[55px]  md:h-[80px]  text-[16px] p-2 overflow-hidden text-ellipsis line-clamp-3">
                 {tintuc.title || "Nội dung tin tức"}
-              </p>
+              </h3>
             </Link>
           </div>
         ))}
@@ -29,9 +29,9 @@ const TopGrid = ({ tintucs }) => {
                 alt={tintuc.title || "Tin tức"}
                 className="w-full h-3/4 object-cover"
               />
-              <p className="whitespace-normal h-[55px] md:h-[80px] text-[16px] p-2 overflow-hidden text-ellipsis line-clamp-3">
+              <h3 className="whitespace-normal h-[55px] md:h-[80px] text-[16px] p-2 overflow-hidden text-ellipsis line-clamp-3">
                 {tintuc.title || "Nội dung tin tức"}
-              </p>
+              </h3>
             </Link>
           </div>
         ))}

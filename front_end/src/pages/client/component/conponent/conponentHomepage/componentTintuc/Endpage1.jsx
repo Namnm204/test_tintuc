@@ -15,9 +15,9 @@ const Endpage1 = ({ tintucs }) => {
                 alt={tintuc.title || "Tin tức"}
                 className="w-full h-3/4 object-cover"
               />
-              <p className="whitespace-normal h-[68px] md:h-[80px] text-[13px] md:text-[16px] p-2 overflow-hidden text-ellipsis line-clamp-3">
+              <h3 className="whitespace-normal h-[68px] md:h-[80px] text-[13px] md:text-[16px] p-2 overflow-hidden text-ellipsis line-clamp-3">
                 {tintuc.title || "Nội dung tin tức"}
-              </p>
+              </h3>
             </Link>
           </div>
         ))}
@@ -33,9 +33,9 @@ const Endpage1 = ({ tintucs }) => {
                   alt={tintuc.title || "Tin tức"}
                   className="w-full h-3/4 object-cover"
                 />
-                <p className="whitespace-normal h-[55px] md:h-[78px] text-[13px] md:text-[16px] pl-2 overflow-hidden text-ellipsis line-clamp-3">
+                <h3 className="whitespace-normal h-[55px] md:h-[78px] text-[13px] md:text-[16px] pl-2 overflow-hidden text-ellipsis line-clamp-3">
                   {tintuc.title || "Nội dung tin tức"}
-                </p>
+                </h3>
               </Link>
             </div>
           ))}

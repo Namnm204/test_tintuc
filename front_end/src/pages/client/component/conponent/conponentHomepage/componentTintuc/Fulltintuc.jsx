@@ -15,10 +15,10 @@ const Fulltintuc = ({ tintucs }) => {
               alt={tintuc.title}
               className="w-full h-[150px] object-cover"
             />
-            <p className="p-2 h-[80px] overflow-hidden text-ellipsis line-clamp-3">
+            <h3 className="p-2 h-[80px] overflow-hidden text-ellipsis line-clamp-3">
               {tintuc.id}
               {tintuc.title}
-            </p>
+            </h3>
           </div>
         </Link>
       ))}

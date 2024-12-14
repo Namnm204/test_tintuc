@@ -16,9 +16,9 @@ const Endpage3 = ({ tintucs }) => {
               alt={largeCard.title || "Tin tức"}
               className="w-[200px] md:w-[390px] h-[200px] object-cover"
             />
-            <p className="mt-2 w-full md:w-[390px] px-2 text-[16px]  overflow-hidden text-ellipsis md:line-clamp-2 line-clamp-4">
+            <h3 className="mt-2 w-full md:w-[390px] px-2 text-[16px]  overflow-hidden text-ellipsis md:line-clamp-2 line-clamp-4">
               {largeCard.title || "Tiêu đề tin tức lớn"}
-            </p>
+            </h3>
           </Link>
         </div>
       )}
@@ -31,9 +31,9 @@ const Endpage3 = ({ tintucs }) => {
               alt={tintuc.title || `Tin tức ${index + 2}`}
               className="w-full md:w-[190px] h-[100px] object-cover"
             />
-            <p className="mt-2 text-left px-2 text-sm line-clamp-3">
+            <h3 className="mt-2 text-left px-2 text-sm line-clamp-3">
               {tintuc.title || `Tiêu đề tin tức ${index + 2}`}
-            </p>
+            </h3>
           </Link>
         </div>
       ))}
