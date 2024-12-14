@@ -91,7 +91,7 @@ const ProductsDetail = () => {
             <div>
               <img
                 src={product.image}
-                alt="Product Image"
+                alt={product.title}
                 className="md:h-[500px] h-[250px] w-full rounded-lg shadow-md"
               />
               <p className="text-center text-[13px] mt-3">
