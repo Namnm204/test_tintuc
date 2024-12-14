@@ -58,7 +58,7 @@ const UserForm = () => {
       }
     } catch (error) {
       console.error("Lỗi khi gửi yêu cầu:", error);
-      alert("Lỗi mạng hoặc sự cố backend.");
+      alert("Tiêu đề bài viết đã tồn tại");
     }
   };
 

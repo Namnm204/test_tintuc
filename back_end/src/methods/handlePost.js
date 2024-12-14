@@ -22,6 +22,23 @@ export async function handlePost(request, env) {
 
     const slug = generateSlug(title); // Tạo slug từ title
 
+    // Kiểm tra trùng tiêu đề trong cơ sở dữ liệu
+    const checkTitle = await env.D1.prepare(
+      "SELECT COUNT(*) AS count FROM tintucs WHERE title = ?"
+    )
+      .bind(title)
+      .first();
+
+    if (checkTitle.count > 0) {
+      return new Response(
+        JSON.stringify({ message: "Tiêu đề bài viết đã tồn tại" }),
+        {
+          status: 409, // HTTP Conflict
+          headers: { "Content-Type": "application/json" },
+        }
+      );
+    }
+
     // Chuyển đổi mảng content thành chuỗi JSON để lưu vào cơ sở dữ liệu
     const contentJson = JSON.stringify(content);
 
@@ -41,30 +58,41 @@ export async function handlePost(request, env) {
       )
       .run();
 
-    return new Response(
-      JSON.stringify({
-        message: "Thêm tin tức thành công",
-        data: {
-          title,
-          slug,
-          description,
-          image,
-          mota_image,
-          author,
-          content: contentJson,
-          created_at,
-        },
-      }),
-      {
-        status: 201,
-        headers: {
-          "Content-Type": "application/json", // Đặt kiểu nội dung là JSON
-          "Access-Control-Allow-Origin": "*",
-          "Access-Control-Allow-Methods": "GET, POST, DELETE",
-          "Access-Control-Allow-Headers": "Content-Type",
-        },
-      }
-    );
+    if (result.success) {
+      return new Response(
+        JSON.stringify({
+          message: "Thêm tin tức thành công",
+          data: {
+            title,
+            slug,
+            description,
+            image,
+            mota_image,
+            author,
+            content: contentJson,
+            created_at,
+          },
+        }),
+        {
+          status: 201,
+          headers: {
+            "Content-Type": "application/json", // Đặt kiểu nội dung là JSON
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Methods": "GET, POST, DELETE",
+            "Access-Control-Allow-Headers": "Content-Type",
+          },
+        }
+      );
+    } else {
+      // Trường hợp chèn dữ liệu không thành công
+      return new Response(
+        JSON.stringify({ message: "Lỗi khi thêm bài viết vào cơ sở dữ liệu" }),
+        {
+          status: 500, // Internal Server Error
+          headers: { "Content-Type": "application/json" },
+        }
+      );
+    }
   } catch (error) {
     console.error("POST request failed:", error); // Ghi lại lỗi chi tiết
     return new Response(JSON.stringify({ message: `Lỗi: ${error.message}` }), {
