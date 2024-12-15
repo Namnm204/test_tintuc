@@ -316,7 +316,7 @@ function BannerList() {
                   src="../../../../public/demo.png"
                   alt=""
                 />
-              </div>
+              </div> 
               <div className="mt-2">
                 {newBannerData.imageEndpage.map((url, index) => (
                   <div key={index} className="flex items-center">
