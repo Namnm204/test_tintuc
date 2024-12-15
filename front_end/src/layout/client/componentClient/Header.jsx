@@ -31,7 +31,7 @@ const Header = () => {
         <div className="flex justify-center items-center w-full md:w-[230px] border-r pr-4">
           <Link to={`/`}>
             <img
-              src="../../../public/logo.png"
+              src="../../../dist/logo.png"
               className="w-[40%] md:w-[100%]"
               alt="Logo"
             />

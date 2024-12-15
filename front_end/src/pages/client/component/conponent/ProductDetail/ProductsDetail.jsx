@@ -43,7 +43,7 @@ const ProductsDetail = () => {
         "https://my-worker.namdaynay001.workers.dev/tintucs"
       );
       const allNews = response.data;
-      console.log(allNews);
+      // console.log(allNews);
 
       const filteredNews = allNews.filter((news) => news.id !== slug);
 
