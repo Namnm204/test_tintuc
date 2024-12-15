@@ -43,8 +43,13 @@ export default {
     if (request.method === "PUT" && url.pathname.startsWith("/banners/")) {
       return handlePutBanner(request, env); // Gọi PUT banner
     }
+    //#endregion
 
     //#region tintuc
+    // Handle POST request for tintucs (create new post)
+    if (request.method === "POST" && url.pathname === "/tintucs") {
+      return handlePost(request, env); // Gọi POST cho tin tức
+    }
 
     if (request.method === "GET" && !url.pathname.includes("/tintucs/")) {
       return handleGet(env);
@@ -60,21 +65,17 @@ export default {
       return handleGetBySlug(env, request);
     }
 
-    if (request.method === "DELETE" && url.pathname.startsWith("/")) {
+    if (request.method === "DELETE" && url.pathname.startsWith("/tintucs/")) {
       return handleDelete(request, env);
     }
-
-    // Handle POST request for tintucs or other general POST requests
-    if (request.method === "POST") {
-      return handlePost(request, env);
-    }
+    //#endregion
 
     //#region Login
-
-    // Handle POST request for login
+    // Handle POST request for login (Ensure this is handled separately)
     if (request.method === "POST" && url.pathname === "/login") {
       return handleLogin(env, request);
     }
+    //#endregion
 
     // If the method is not allowed
     return new Response("Method not allowed", { status: 405 });

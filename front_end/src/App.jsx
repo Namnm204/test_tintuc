@@ -30,14 +30,6 @@ function App() {
         <Route path=":slug" element={<PrivateRoute><DetailTintucPageAdmin /></PrivateRoute>} />
         <Route path="banners" element={<PrivateRoute><BannerList /></PrivateRoute>} />
       </Route>
-
-      {/* <Route path="admin" element={<AdminLayout />}>
-        <Route path="" element={<TintucList />} />
-        <Route path="add" element={<TintucAdd />} />
-        <Route path="edit/:slug" element={<UpdatePostForm />} />
-        <Route path=":slug" element={<DetailTintucPageAdmin />} />
-        <Route path="banners" element={<BannerList />} />
-      </Route> */}
     </Routes>
   );
 }
