@@ -76,9 +76,16 @@ const ProductsDetail = () => {
             {/* Article Meta */}
             <div className="text-sm text-gray-500 flex justify-between">
               <p className="text-gray-500">Tác giả: {product.author}</p>
-              <p className="text-gray-500">
-                Ngày đăng: {new Date(product.created_at).toLocaleDateString()}
-              </p>
+              <div className="flex items-center space-x-4">
+                <p className="text-gray-500 text-sm">
+                  Ngày đăng: {new Date(product.created_at).toLocaleDateString()}
+                </p>
+                <div className="flex items-center space-x-1 text-gray-500 text-sm">
+                  <span className="text-lg">👁️‍🗨️</span>
+                  {/* Unicode eye symbol */}
+                  <p>{product.view}</p>
+                </div>
+              </div>
             </div>
             <div className="w-full h-[2px] bg-gray-300 my-8"></div>
 
