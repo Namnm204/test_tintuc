@@ -25,14 +25,14 @@ const Header = () => {
   };
 
   return (
-    <header className="flex flex-col md:flex-row items-center bg-white p-4 shadow-lg">
+    <header className="hidden md:flex flex-col md:flex-row items-center bg-white p-4 shadow-lg">
       <div className="w-full md:w-[90%] mx-auto flex flex-col md:flex-row items-center justify-between">
         {/* Logo */}
         <div className="flex justify-center items-center w-full md:w-[230px] border-r pr-4">
           <Link to={`/`}>
             <img
-              src="../../../dist/logo.png"
-              className="w-[40%] md:w-[100%]"
+              src="../../../dist/assets/logo.png"
+              className="w-[60%] md:w-[100%] mx-auto"
               alt="Logo"
             />
           </Link>
@@ -117,7 +117,7 @@ const Header = () => {
         </div>
 
         {/* Tài khoản người dùng */}
-        <div className="flex items-center mt-2 md:mt-0 md:ml-0">
+        <div className="hidden md:flex items-center mt-2 md:mt-0 md:ml-0">
           <button className="mx-2 pb-2 text-gray-700 hover:text-blue-500 transition duration-300 flex items-center">
             Đăng nhập
           </button>
@@ -152,6 +152,13 @@ const Header = () => {
           <button className="mx-2 pb-2 text-gray-700 hover:text-blue-500 transition duration-300">
             Công nghệ
           </button>
+          {/* Tài khoản người dùng */}
+          <div className="flex items-center mt-2 md:mt-0 md:ml-0">
+            <button className="mx-2 pb-2 text-gray-700 hover:text-blue-500 transition duration-300 flex items-center">
+              Đăng nhập
+            </button>
+            <FaUserCircle className="text-gray-600 cursor-pointer" />
+          </div>
         </div>
       )}
     </header>

@@ -15,3 +15,10 @@
   width: 100%; /* Đảm bảo chiều rộng luôn 100% */
   min-height: 200px; /* Đặt chiều cao tối thiểu cho editor */
 }
+.slick-next {
+  right: 0;
+  z-index: -999;
+}
+.slick-prev {
+  margin-left: 50px;
+}

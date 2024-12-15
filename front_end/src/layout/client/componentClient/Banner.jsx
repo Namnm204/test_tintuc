@@ -33,10 +33,11 @@ const Banner = () => {
     slidesToScroll: 1, // Number of slides to scroll at a time
     autoplaySpeed: 1000,
     autoplay: true,
+    arrows: true,
   };
 
   return (
-    <div className="w-full">
+    <div className="w-full ">
       {banners.length > 0 ? (
         <Slider {...settings}>
           {banners.map((banner) => (
@@ -44,7 +45,7 @@ const Banner = () => {
               <img
                 src={banner.imageBanner}
                 alt={`Banner ${banner.id}`}
-                className="w-full h-[500px]"
+                className="w-full md:h-[500px] border"
               />
             </div>
           ))}

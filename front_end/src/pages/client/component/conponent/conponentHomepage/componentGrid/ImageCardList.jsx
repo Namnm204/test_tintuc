@@ -52,13 +52,13 @@ const ImageCardList = ({ tintucs, banners }) => {
       ))}
 
       {/* Optional: Additional Image */}
-      <div className="md:absolute mt-48 md:mt-0 w-full bottom-0">
+      <div className="md:absolute mt-48 md:mt-0 w-full bottom-0 border">
         {banners.length > 0 && (
           <div>
             <img
               src={banners[0]?.imagehome || ""}
               alt={`Banner ${banners[0]?.slug || "unknown"}`}
-              className="w-full h-[375px]"
+              className="w-full md:h-[375px]"
             />
           </div>
         )}

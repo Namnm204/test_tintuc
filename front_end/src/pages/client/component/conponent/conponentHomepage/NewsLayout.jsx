@@ -68,7 +68,7 @@ const NewsLayout = () => {
                     className="w-full md:w-[70%] h-[250px] md:h-[400px] object-cover"
                     alt={newsLayoutArticles[0].title} // Sử dụng tiêu đề làm alt
                   />
-                  <div className=" w-full md:w-[45%] md:h-[145px] md:pl-4 ">
+                  <div className=" w-full md:w-[45%] md:h-[145px] md:pl-4 mt-2 md:mt-0">
                     <h3 className="font-semibold text-lg overflow-hidden">
                       {newsLayoutArticles[0].title}
                     </h3>
@@ -141,7 +141,7 @@ const NewsLayout = () => {
                       className="w-[100px] h-[80px] object-cover rounded-md"
                       alt="Tin tức"
                     />
-                    <div>
+                    <div className="pl-2 md:pl-0">
                       <h1 className="md:ml-3 text-[13px] text-gray-700 overflow-hidden text-ellipsis line-clamp-3">
                         {tintuc.title}
                       </h1>

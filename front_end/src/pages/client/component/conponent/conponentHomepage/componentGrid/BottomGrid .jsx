@@ -9,11 +9,11 @@ const BottomGrid = ({ tintucs, banners }) => {
   const newsForFulltintuc = tintucs.slice(45); // Phần còn lại
 
   return (
-    <div className=" md:w-[1440px] grid grid-cols-2 md:grid-cols-3 gap-8">
+    <div className=" md:w-[1240px] grid grid-cols-2 lg:grid-cols-3 gap-8">
       {/* Cột 1 */}
       <div className="col-span-2 mr-4">
         <Endpage1 tintucs={tintucs} />
-        <div className="w-full h-[2px] bg-gray-300 mt-[60px] my-4"></div>
+        <div className="w-[110%] md:w-[90%] h-[2px] bg-gray-300 mt-[60px] my-4"></div>
         <Fulltintuc tintucs={newsForFulltintuc} />
       </div>
       {/* Cột 2 */}

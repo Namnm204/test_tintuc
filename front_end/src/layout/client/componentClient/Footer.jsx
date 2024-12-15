@@ -4,7 +4,11 @@ const Footer = () => {
       <div className="container mx-auto flex flex-col lg:flex-row items-start p-6 md:p-10 gap-10">
         {/* Logo */}
         <div className="w-full lg:w-[15%] flex-shrink-0">
-          <img src="../../../dist/logo.png" alt="Logo" className="mx-auto lg:mx-0" />
+          <img
+            src="../../../dist/assets/logo.png"
+            alt="Logo"
+            className="mx-auto lg:mx-0"
+          />
         </div>
 
         {/* Nội dung chính */}

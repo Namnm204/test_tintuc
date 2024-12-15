@@ -63,20 +63,20 @@ const ProductsDetail = () => {
   if (!product) return <p>Loading...</p>;
 
   return (
-    <div className="font-sans bg-gray-50">
+    <div className="font-sans ">
       <Header />
-      <div className="md:w-[75%] mx-auto px-4 py-10">
+      <div className="md:w-[63%] mx-auto px-4 py-5 md:py-10">
         {/* conent */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Left Column: Article Content */}
-          <div className="md:col-span-2 space-y-6">
+          <div className="md:col-span-2">
             {/* Article Title */}
             <h1 className="text-3xl font-bold text-black">{product.title}</h1>
 
             {/* Article Meta */}
-            <div className="text-sm text-gray-500 flex justify-between">
+            <div className="text-sm text-gray-500 flex md:justify-between mt-5">
               <p className="text-gray-500">Tác giả: {product.author}</p>
-              <div className="flex items-center space-x-4">
+              <div className="flex items-center space-x-4 ">
                 <p className="text-gray-500 text-sm">
                   Ngày đăng: {new Date(product.created_at).toLocaleDateString()}
                 </p>
@@ -87,23 +87,21 @@ const ProductsDetail = () => {
                 </div>
               </div>
             </div>
-            <div className="w-full h-[2px] bg-gray-300 my-8"></div>
+            <div className=" w-full h-[2px] bg-gray-300 mb-5 mt-2"></div>
 
             {/* Article Content */}
-            <div className="space-y-4">
+            <div className="space-y-4 mb-3">
               <p className="text-lg text-gray-700">{product.description}</p>
             </div>
 
             {/* Image Section */}
-            <div>
+            <div className="mb-4">
               <img
                 src={product.image}
                 alt={product.title}
-                className="md:h-[500px] h-[250px] w-full rounded-lg shadow-md"
+                className="w-full  rounded-lg shadow-md"
               />
-              <p className="text-center text-[13px] mt-3">
-                {product.mota_image}
-              </p>
+              <p className="text-center text-[13px]">{product.mota_image}</p>
             </div>
 
             {/* Dynamic Content */}
@@ -124,9 +122,9 @@ const ProductsDetail = () => {
                         <img
                           src={contentItem.image}
                           alt={`Content image ${index + 1}`}
-                          className="md:h-[500px] h-[250px] w-full rounded-lg shadow-md"
+                          className=" w-full rounded-lg shadow-md object-cover"
                         />
-                        <p className="text-center text-[13px] mt-3">
+                        <p className="text-center text-[13px]">
                           {contentItem.mota_image_content}
                         </p>
                       </div>
@@ -158,7 +156,7 @@ const ProductsDetail = () => {
                       <img
                         src={news.image}
                         alt={news.title}
-                        className="w-32 h-32 object-cover rounded-md"
+                        className="w-32 h-32 object-cover rounded-md "
                       />
                       <div className="flex flex-col justify-center">
                         <p className="text-lg font-semibold text-gray-800 overflow-hidden text-ellipsis line-clamp-2">
@@ -186,17 +184,17 @@ const ProductsDetail = () => {
             <img
               src="../../../../../../public/imagessale.jpg"
               alt="Advertisement 1"
-              className="w-full rounded-lg shadow-md"
+              className="w-full rounded-lg shadow-md  object-cover"
             />
             <img
               src="../../../../../../public/imagessale.jpg"
               alt="Advertisement 2"
-              className="w-full rounded-lg shadow-md"
+              className="w-full rounded-lg shadow-md  object-cover"
             />
             <img
               src="../../../../../../public/imagessale.jpg"
               alt="Advertisement 3"
-              className="w-full rounded-lg shadow-md"
+              className="w-full rounded-lg shadow-md  object-cover"
             />
           </div>
         </div>
