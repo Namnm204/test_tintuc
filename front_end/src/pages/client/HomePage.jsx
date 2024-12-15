@@ -31,7 +31,7 @@ const HomePage = () => {
     }
 
     fetchTintucs();
-  }, [tintucs]);
+  }, []);
 
   useEffect(() => {
     // Fetch banners from your API
