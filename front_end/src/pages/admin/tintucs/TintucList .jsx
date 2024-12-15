@@ -156,7 +156,7 @@ const TintucList = () => {
                 <td className="py-3 px-4 text-center">
                   <img src={tintuc.image} alt="ảnh chính" width={"50px"} />
                 </td>
-                <td className="py-3 px-4 text-center flex">
+                <td className="py-3 px-4 text-center flex flex-wrap gap-2">
                   <Link
                     to={`/admin/${tintuc.slug}`}
                     className="ml-2 bg-green-500 text-white py-1 px-3 rounded-md hover:bg-green-600 transition duration-300"
