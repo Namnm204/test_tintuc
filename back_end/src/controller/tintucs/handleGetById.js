@@ -1,38 +1,41 @@
 export async function handleGetBySlug(env, request) {
   try {
-    // Lấy 'slug' từ URL path
     const url = new URL(request.url);
-    const slug = url.pathname.split("/").pop(); // Giả định URL dạng /tintucs/:slug
+    const slug = url.pathname.split("/tintucs/")[1]; // Lấy slug từ URL
 
     if (!slug) {
-      return new Response("Slug is required", { status: 400 });
+      return new Response(JSON.stringify({ message: "Slug không hợp lệ" }), {
+        status: 400,
+        headers: { "Content-Type": "application/json" },
+      });
     }
 
-    // Truy vấn SQL để lấy tin tức theo slug
-    const { results } = await env.D1.prepare(
-      "SELECT * FROM tintucs WHERE slug = ?"
-    )
+    // Tăng view trước khi trả về bài viết
+    await env.D1.prepare("UPDATE tintucs SET view = view + 1 WHERE slug = ?")
       .bind(slug)
-      .all();
+      .run();
 
-    // Kiểm tra nếu không tìm thấy kết quả
-    if (!results || results.length === 0) {
-      return new Response("News not found", { status: 404 });
+    // Lấy thông tin bài viết từ database
+    const article = await env.D1.prepare("SELECT * FROM tintucs WHERE slug = ?")
+      .bind(slug)
+      .first();
+
+    if (!article) {
+      return new Response(
+        JSON.stringify({ message: "Bài viết không tồn tại" }),
+        { status: 404, headers: { "Content-Type": "application/json" } }
+      );
     }
 
-    // Trả về dữ liệu tin tức ở dạng JSON
-    return new Response(JSON.stringify(results[0]), {
-      headers: {
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "*", // Cho phép CORS
-        "Access-Control-Allow-Methods": "GET, POST, DELETE",
-        "Access-Control-Allow-Headers": "Content-Type",
-      },
+    return new Response(JSON.stringify(article), {
+      status: 200,
+      headers: { "Content-Type": "application/json" },
     });
   } catch (error) {
-    console.error("GET by Slug Error:", error);
-    return new Response(`Internal Server Error: ${error.message}`, {
-      status: 500,
-    });
+    console.error("Lỗi khi lấy chi tiết bài viết:", error);
+    return new Response(
+      JSON.stringify({ message: `Lỗi hệ thống: ${error.message}` }),
+      { status: 500, headers: { "Content-Type": "application/json" } }
+    );
   }
 }
