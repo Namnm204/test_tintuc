@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
@@ -157,6 +157,12 @@ const TintucList = () => {
                     className="ml-2 bg-green-500 text-white py-1 px-3 rounded-md hover:bg-green-600 transition duration-300"
                   >
                     View
+                  </Link>
+                  <Link
+                    to={`/admin/edit/${tintuc.slug}`}
+                    className="ml-2 bg-green-500 text-white py-1 px-3 rounded-md hover:bg-green-600 transition duration-300"
+                  >
+                    Update
                   </Link>
                   <button
                     onClick={() => handleDelete(tintuc.id)}

@@ -6,6 +6,7 @@ import { handleDelete } from "./src/controller/tintucs/handleDelete";
 import { handleGet } from "./src/controller/tintucs/handleGet";
 import { handleGetBySlug } from "./src/controller/tintucs/handleGetById";
 import { handlePost } from "./src/controller/tintucs/handlePost";
+import { handlePut } from "./src/controller/tintucs/handlePut";
 import { handleOptions } from "./src/methods/handleOptions";
 
 export default {
@@ -25,6 +26,11 @@ export default {
     // Handle GET request for all items (e.g., /tintucs)
     if (request.method === "GET" && !url.pathname.includes("/tintucs/")) {
       return handleGet(env);
+    }
+
+    // Handle PUT request for tintucs (update a post)
+    if (request.method === "PUT" && url.pathname.startsWith("/tintucs/")) {
+      return handlePut(request, env); // Gọi controller PUT
     }
 
     // Handle GET request for specific item by ID (e.g., /tintucs/:id)

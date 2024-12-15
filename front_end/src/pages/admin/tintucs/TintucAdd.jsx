@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css"; // Import CSS
 
-const UserForm = () => {
+const TintucAdd = () => {
   const { register, handleSubmit } = useForm();
   const navigate = useNavigate();
 
@@ -134,7 +134,7 @@ const UserForm = () => {
           </label>
           {contentFields.map((field, index) => (
             <div key={index} className="mb-4">
-              <div>{index + 1}</div>
+              <div className="pb-3 pt-3">content: {index + 1}</div>
               <ReactQuill
                 theme="snow"
                 value={field.value}
@@ -142,7 +142,7 @@ const UserForm = () => {
                   handleContentChange(index, "value", content)
                 }
                 modules={modules} // Áp dụng modules để cho phép thay đổi màu văn bản
-                className="react-quill mb-2" // Áp dụng class để thay đổi kích thước
+                className="react-quill mb-2 h-[100px]" // Áp dụng class để thay đổi kích thước
               />
 
               <input
@@ -191,4 +191,4 @@ const UserForm = () => {
   );
 };
 
-export default UserForm;
+export default TintucAdd;

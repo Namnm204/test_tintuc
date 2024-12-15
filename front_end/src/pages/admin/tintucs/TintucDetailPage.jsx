@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom"; // To fetch the product slug from URL params
 import axios from "axios";
 
-const ProductDetailPage = () => {
+const DetailTintucPageAdmin = () => {
   const { slug } = useParams();
   const [product, setProduct] = useState(null);
 
@@ -107,4 +107,4 @@ const ProductDetailPage = () => {
   );
 };
 
-export default ProductDetailPage;
+export default DetailTintucPageAdmin;
