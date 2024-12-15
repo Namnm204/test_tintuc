@@ -300,7 +300,7 @@ function BannerList() {
               <div className="absolute hidden md:block md:ml-[600px] md:mt-[-400px]">
                 <img
                   className="w-[90%]"
-                  src="../../../../public/demo.png"
+                  src="../../../../dist/demo.png"
                   alt=""
                 />
               </div>
