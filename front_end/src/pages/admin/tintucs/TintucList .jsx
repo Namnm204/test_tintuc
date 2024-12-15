@@ -13,7 +13,7 @@ const TintucList = () => {
   const fetchtintucs = async () => {
     try {
       const response = await axios.get(
-        "https://my-worker.namdaynay001.workers.dev/"
+        "https://my-worker.namdaynay001.workers.dev/tintucs"
       );
       const sortedData = response.data.sort(
         (a, b) => new Date(b.created_at) - new Date(a.created_at)
@@ -28,14 +28,17 @@ const TintucList = () => {
 
   useEffect(() => {
     fetchtintucs();
-  }, [tintucs]);
+  }, []);
 
   const handleDelete = async (id) => {
     if (window.confirm("Are you sure you want to delete this tintuc?")) {
       try {
-        await axios.delete(`https://my-worker.namdaynay001.workers.dev/${id}`, {
-          headers: { "Content-Type": "application/json" },
-        });
+        await axios.delete(
+          `https://my-worker.namdaynay001.workers.dev/tintucs/${id}`,
+          {
+            headers: { "Content-Type": "application/json" },
+          }
+        );
         settintucs((prevtintucs) =>
           prevtintucs.filter((tintuc) => tintuc.id !== id)
         );
@@ -63,7 +66,9 @@ const TintucList = () => {
         // Xóa từng tin tức theo ID
         await Promise.all(
           selectedIds.map((id) =>
-            axios.delete(`https://my-worker.namdaynay001.workers.dev/${id}`)
+            axios.delete(
+              `https://my-worker.namdaynay001.workers.dev/tintucs/${id}`
+            )
           )
         );
         // Cập nhật danh sách tin tức
