@@ -4,19 +4,7 @@ export async function handlePostBanner(request, env) {
     const { imageBanner, imagestick, imageSale, imagehome, imageEndpage } =
       requestBody;
 
-    if (
-      !imageBanner ||
-      !imagestick ||
-      !imageSale ||
-      !imagehome ||
-      !Array.isArray(imageEndpage)
-    ) {
-      return new Response(
-        JSON.stringify({ message: "Missing or invalid required fields" }),
-        { status: 400, headers: { "Content-Type": "application/json" } }
-      );
-    }
-
+    // Bỏ qua validate, trực tiếp insert vào database
     const imageEndpageJson = JSON.stringify(imageEndpage);
 
     const query =

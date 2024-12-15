@@ -57,20 +57,6 @@ function BannerList() {
   };
 
   const handleAddBanner = async () => {
-    const { imageBanner, imagestick, imageSale, imagehome, imageEndpage } =
-      newBannerData;
-
-    if (
-      !imageBanner ||
-      !imagestick ||
-      !imageSale ||
-      !imagehome ||
-      imageEndpage.length === 0
-    ) {
-      alert("Please fill out all fields");
-      return;
-    }
-
     try {
       await axios.post(
         "https://my-worker.namdaynay001.workers.dev/banners",
@@ -93,6 +79,7 @@ function BannerList() {
         "https://my-worker.namdaynay001.workers.dev/banners"
       );
       const data = await response.json();
+
       setBanners(data);
     } catch (error) {
       console.error("Error adding banner:", error);
@@ -316,7 +303,7 @@ function BannerList() {
                   src="../../../../public/demo.png"
                   alt=""
                 />
-              </div> 
+              </div>
               <div className="mt-2">
                 {newBannerData.imageEndpage.map((url, index) => (
                   <div key={index} className="flex items-center">
