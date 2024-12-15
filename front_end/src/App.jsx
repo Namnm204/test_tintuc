@@ -3,7 +3,7 @@ import "./App.css";
 import Client from "./layout/client/Client";
 // import HomePage from "./pages/HomePage";
 import AdminLayout from "./layout/admin/index";
-import PrivateRoute from "./PrivateRoute";
+// import PrivateRoute from "./PrivateRoute";
 import Login from "./pages/admin/user/Login ";
 import BannerList from "./pages/admin/banner";
 import ProductsDetail from "./pages/client/component/conponent/ProductDetail/ProductsDetail";
@@ -21,14 +21,21 @@ function App() {
         <Route path=":slug" element={<ProductsDetail />} />
       </Route>
 
-      <Route path="admin" element={<PrivateRoute><AdminLayout /></PrivateRoute>}>
+      {/* <Route path="admin" element={<PrivateRoute><AdminLayout /></PrivateRoute>}>
         <Route path="" element={<PrivateRoute><TintucList /></PrivateRoute>} />
         <Route path="add" element={<PrivateRoute><TintucAdd /></PrivateRoute>} />
         <Route path="edit/:slug" element={<PrivateRoute><UpdatePostForm /></PrivateRoute>} />
         <Route path=":slug" element={<PrivateRoute><DetailTintucPageAdmin /></PrivateRoute>} />
         <Route path="banners" element={<PrivateRoute><BannerList /></PrivateRoute>} />
-      </Route>
+      </Route> */}
 
+      <Route path="admin" element={<AdminLayout />}>
+        <Route path="" element={<TintucList />} />
+        <Route path="add" element={<TintucAdd />} />
+        <Route path="edit/:slug" element={<UpdatePostForm />} />
+        <Route path=":slug" element={<DetailTintucPageAdmin />} />
+        <Route path="banners" element={<BannerList />} />
+      </Route>
     </Routes>
   );
 }
