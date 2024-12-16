@@ -29,10 +29,10 @@ const Header = () => {
       <div className="w-full md:w-[90%] mx-auto flex flex-col md:flex-row items-center justify-between">
         {/* Logo */}
         <div className="flex justify-center items-center w-full md:w-[230px] border-r pr-4">
-          <Link to={`/`}>
+          <Link to={`/`} className="absolute">
             <img
               src="/assets/logoweb-CVGW3161.png"
-              className="w-[60%] md:w-[100%] mx-auto"
+              className="w-[60%] md:w-[30%] mx-auto"
               alt="Logo"
             />
           </Link>
