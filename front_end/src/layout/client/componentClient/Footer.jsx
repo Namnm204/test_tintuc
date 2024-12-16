@@ -5,7 +5,7 @@ const Footer = () => {
         {/* Logo */}
         <div className="w-full lg:w-[15%] flex-shrink-0">
           <img
-            src="../../../../dist/assets/logo.png"
+            src="/assets/logoweb-CVGW3161.png"
             alt="Logo"
             className="mx-auto lg:mx-0"
           />
