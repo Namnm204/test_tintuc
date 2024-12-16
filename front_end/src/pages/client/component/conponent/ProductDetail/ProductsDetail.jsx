@@ -118,7 +118,7 @@ const ProductsDetail = () => {
                       }}
                     />
                     {contentItem.image && (
-                      <div>
+                      <div className="mt-3">
                         <img
                           src={contentItem.image}
                           alt={`Content image ${index + 1}`}
