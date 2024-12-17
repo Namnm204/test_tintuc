@@ -25,7 +25,7 @@ function App() {
       <Route path="*" element={<NotFound />} />
 
       <Route path="admin" element={<PrivateRoute><AdminLayout /></PrivateRoute>}> 
-        <Route path="doashboard" element={<PrivateRoute><Dashboard /></PrivateRoute>} />
+        <Route path="" element={<PrivateRoute><Dashboard /></PrivateRoute>} />
         <Route path="list" element={<PrivateRoute><TintucList /></PrivateRoute>} />
         <Route path="add" element={<PrivateRoute><TintucAdd /></PrivateRoute>} />
         <Route path="edit/:slug" element={<PrivateRoute><UpdatePostForm /></PrivateRoute>} />
