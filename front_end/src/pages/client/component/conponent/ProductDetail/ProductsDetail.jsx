@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import Footer from "../../../../../layout/client/componentClient/Footer";
 import Header from "../../../../../layout/client/componentClient/Header";
+import { Helmet } from "react-helmet";
 
 import { FaCopy, FaFacebookF, FaLinkedinIn, FaTwitter } from "react-icons/fa";
 
@@ -110,6 +111,19 @@ const ProductsDetail = () => {
 
   return (
     <div className="font-sans">
+      <Helmet>
+        <meta property="og:type" content="article" />
+        <meta property="og:title" content={product.title} />
+        <meta property="og:description" content={product.description} />
+        <meta property="og:image" content={product.image} />
+        <meta property="og:url" content={pageUrl} />
+        <meta name="keywords" content={product.content} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={product.title} />
+        <meta name="twitter:description" content={product.description} />
+        <meta name="twitter:image" content={product.image} />
+        <meta name="twitter:url" content={pageUrl} />
+      </Helmet>
       <Header />
       <div className="md:w-[63%] mx-auto px-4 py-5 md:py-10">
         {/* Content */}
@@ -221,17 +235,17 @@ const ProductsDetail = () => {
         {/* Banner */}
         <div className="grid md:grid-cols-3 grid-cols-1 gap-4 mt-16">
           <img
-            src="../../../../../../public/imagessale.jpg"
+            src="https://i.postimg.cc/GtpZjNBk/imagessale.jpg"
             alt="Advertisement 1"
             className="w-full rounded-lg shadow-md object-cover"
           />
           <img
-            src="../../../../../../public/imagessale.jpg"
+            src="https://i.postimg.cc/GtpZjNBk/imagessale.jpg"
             alt="Advertisement 2"
             className="w-full rounded-lg shadow-md object-cover"
           />
           <img
-            src="../../../../../../public/imagessale.jpg"
+            src="https://i.postimg.cc/GtpZjNBk/imagessale.jpg"
             alt="Advertisement 3"
             className="w-full rounded-lg shadow-md object-cover"
           />
