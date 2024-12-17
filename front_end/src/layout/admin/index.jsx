@@ -18,12 +18,12 @@ const AdminLayout = () => {
       >
         <ul className="flex md:block justify-center md:justify-start">
           <li className="md:mt-4 mt-2 ml-6 md:ml-0">
-            <Link to="/admin" className="block text-center md:text-left">
+            <Link to="/admin/doashboard" className="block text-center md:text-left">
               Thống kê
             </Link>
           </li>
           <li className="mt-4">
-            <Link to="/admin/" className="block text-center md:text-left">
+            <Link to="/admin/list" className="block text-center md:text-left">
               Quản lý tin tức
             </Link>
           </li>
