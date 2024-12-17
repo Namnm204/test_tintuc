@@ -102,7 +102,7 @@ const UpdatePostForm = () => {
       );
       if (response.status === 200) {
         alert("Cập nhật thành công");
-        navigate("/admin");
+        navigate("/admin/list");
       }
     } catch (error) {
       console.error("Lỗi khi gửi yêu cầu:", error);
