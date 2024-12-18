@@ -137,7 +137,8 @@ const TintucAdd = () => {
               placeholder="Đường dẫn ảnh chính"
               className="w-full p-2 border border-gray-300 rounded-md"
               value={mainImage}
-              onChange={handleMainImageChange} // Update the main image URL
+              onChange={handleMainImageChange}
+              {...register("image")}
             />
           </div>
 
