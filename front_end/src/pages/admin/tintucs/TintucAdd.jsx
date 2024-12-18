@@ -60,7 +60,7 @@ const TintucAdd = () => {
       );
       if (response.status === 201) {
         alert("Thêm thành công");
-        navigate("/admin");
+        navigate("/admin/list");
       }
     } catch (error) {
       console.error("Lỗi khi gửi yêu cầu:", error);
