@@ -111,7 +111,6 @@ const ProductsDetail = () => {
 
   return (
     <div className="font-sans">
-      {/* Update meta tags dynamically */}
       <Helmet>
         <title>{product.title}</title>
         <meta name="description" content={product.description} />
