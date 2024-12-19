@@ -189,7 +189,9 @@ const TintucList = () => {
         >
           Trở về
         </button>
-        <span className="mx-4 mt-2">Trang {currentPage}</span>
+        <span className="mx-4 mt-2">
+          Trang {currentPage} / {Math.ceil(tintucs.length / itemsPerPage)}
+        </span>
         <button
           onClick={() => setCurrentPage((prev) => prev + 1)}
           disabled={endIndex >= tintucs.length}
