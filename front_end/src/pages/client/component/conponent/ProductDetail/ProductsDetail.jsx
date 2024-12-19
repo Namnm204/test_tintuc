@@ -1,9 +1,9 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { Helmet } from "react-helmet";
 import { Link, useParams } from "react-router-dom";
 import Footer from "../../../../../layout/client/componentClient/Footer";
 import Header from "../../../../../layout/client/componentClient/Header";
-import { Helmet } from "react-helmet";
 
 import { FaCopy, FaFacebookF, FaLinkedinIn, FaTwitter } from "react-icons/fa";
 
@@ -124,6 +124,7 @@ const ProductsDetail = () => {
         <meta name="twitter:description" content={product.description} />
         <meta name="twitter:image" content={product.image} />
       </Helmet>
+
       <Header />
       <div className="md:w-[63%] mx-auto px-4 py-5 md:py-10">
         {/* Content */}
