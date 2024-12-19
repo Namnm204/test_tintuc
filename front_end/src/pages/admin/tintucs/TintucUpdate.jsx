@@ -239,6 +239,9 @@ const UpdatePostForm = () => {
       <div className="w-1/2 bg-gray-100 p-4 rounded-md shadow-md">
         <h2 className="text-xl font-semibold mb-4">Xem trước tin tức</h2>
         <div>
+          <p className="text-sm text-gray-600 mb-2">
+            {watchedFields.author || "Tác giả"}
+          </p>
           <h3 className="text-lg font-bold">
             {watchedFields.title || "Tiêu đề sẽ hiển thị ở đây"}
           </h3>
@@ -252,6 +255,9 @@ const UpdatePostForm = () => {
               className="w-full h-auto mb-2"
             />
           )}
+          <p className="text-sm text-gray-600 mb-2 mt-[-5px] text-center">
+            {watchedFields.mota_image || "Mô tả sẽ hiển thị ở đây..."}
+          </p>
           {contentFields.map((field, index) => (
             <div key={index} className="mb-4">
               <div
@@ -266,7 +272,7 @@ const UpdatePostForm = () => {
                 />
               )}
               {field.mota_image_content && (
-                <p className="text-sm text-gray-600">
+                <p className="text-sm text-gray-600 text-center">
                   {field.mota_image_content}
                 </p>
               )}
