@@ -6,7 +6,7 @@ import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css"; // Import CSS
 
 const UpdatePostForm = () => {
-  const { register, handleSubmit, setValue } = useForm();
+  const { register, handleSubmit, setValue, watch } = useForm();
   const navigate = useNavigate();
   const { slug } = useParams(); // Lấy slug từ URL
   const [contentFields, setContentFields] = useState([
@@ -14,6 +14,8 @@ const UpdatePostForm = () => {
   ]);
   const [loading, setLoading] = useState(true);
   const [message, setMessage] = useState("");
+
+  const watchedFields = watch(); // Theo dõi toàn bộ các trường
 
   useEffect(() => {
     const fetchPost = async () => {
@@ -24,26 +26,18 @@ const UpdatePostForm = () => {
         if (response.status === 200) {
           const post = response.data;
 
-          // Kiểm tra xem content có phải là chuỗi JSON không và phân tích nó thành mảng
+          // Phân tích content nếu là JSON
           let content = post.content;
           if (typeof content === "string") {
             try {
-              content = JSON.parse(content); // Chuyển chuỗi JSON thành mảng
+              content = JSON.parse(content);
             } catch (error) {
               console.error("Lỗi phân tích JSON content:", error);
-              content = []; // Khởi tạo mảng rỗng nếu không phân tích được
+              content = [];
             }
           }
 
-          // Kiểm tra xem content có phải là mảng không trước khi set vào state
-          if (Array.isArray(content)) {
-            setContentFields(content);
-          } else {
-            console.error("Content không phải là mảng hợp lệ.");
-            setContentFields([]); // Khởi tạo mảng rỗng nếu không phải mảng
-          }
-
-          // Set các giá trị còn lại trong form
+          setContentFields(Array.isArray(content) ? content : []);
           setValue("title", post.title);
           setValue("description", post.description);
           setValue("image", post.image);
@@ -110,95 +104,92 @@ const UpdatePostForm = () => {
     }
   };
 
-  // Cập nhật modules để cho phép thay đổi màu văn bản
   const modules = {
     toolbar: [
       [{ header: "1" }, { header: "2" }, { font: [] }],
       [{ list: "ordered" }, { list: "bullet" }],
       ["bold", "italic", "underline"],
       [{ align: [] }],
-      ["link"], // Cho phép chèn liên kết
-      [{ color: [] }, { background: [] }], // Thêm chức năng thay đổi màu chữ và màu nền
+      ["link"],
+      [{ color: [] }, { background: [] }],
       ["blockquote"],
       ["image"],
       ["code-block"],
     ],
   };
 
-  // Kiểm tra nếu contentFields là mảng trước khi gọi map
   if (loading) {
     return <div>Đang tải...</div>;
   }
 
   return (
-    <div className="mx-auto p-4 bg-white rounded-md shadow-md">
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <h1 className="text-2xl font-semibold text-center mb-4">
-          Cập nhật tin tức
-        </h1>
+    <div className="flex space-x-4">
+      {/* Form cập nhật tin tức */}
+      <div className="w-1/2 mx-auto p-4 bg-white rounded-md shadow-md">
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <h1 className="text-2xl font-semibold text-center mb-4">
+            Cập nhật tin tức
+          </h1>
 
-        <div className="mb-4">
-          <input
-            type="text"
-            placeholder="Tiêu đề tin tức"
-            className="w-full p-2 border border-gray-300 rounded-md"
-            {...register("title", { required: true })}
-          />
-        </div>
+          <div className="mb-4">
+            <input
+              type="text"
+              placeholder="Tiêu đề tin tức"
+              className="w-full p-2 border border-gray-300 rounded-md"
+              {...register("title", { required: true })}
+            />
+          </div>
 
-        <div className="mb-4">
-          <input
-            type="text"
-            placeholder="Mô tả tin tức"
-            className="w-full p-2 border border-gray-300 rounded-md"
-            {...register("description", { required: true })}
-          />
-        </div>
+          <div className="mb-4">
+            <input
+              type="text"
+              placeholder="Mô tả tin tức"
+              className="w-full p-2 border border-gray-300 rounded-md"
+              {...register("description", { required: true })}
+            />
+          </div>
 
-        <div className="mb-4">
-          <input
-            type="text"
-            placeholder="Đường dẫn ảnh chính"
-            className="w-full p-2 border border-gray-300 rounded-md"
-            {...register("image")}
-          />
-        </div>
+          <div className="mb-4">
+            <input
+              type="text"
+              placeholder="Đường dẫn ảnh chính"
+              className="w-full p-2 border border-gray-300 rounded-md"
+              {...register("image")}
+            />
+          </div>
 
-        <div className="mb-4">
-          <input
-            type="text"
-            placeholder="Mô tả ảnh"
-            className="w-full p-2 border border-gray-300 rounded-md"
-            {...register("mota_image")}
-          />
-        </div>
+          <div className="mb-4">
+            <input
+              type="text"
+              placeholder="Mô tả ảnh"
+              className="w-full p-2 border border-gray-300 rounded-md"
+              {...register("mota_image")}
+            />
+          </div>
 
-        <div className="mb-4">
-          <input
-            type="text"
-            placeholder="Tác giả"
-            className="w-full p-2 border border-gray-300 rounded-md"
-            {...register("author")}
-          />
-        </div>
+          <div className="mb-4">
+            <input
+              type="text"
+              placeholder="Tác giả"
+              className="w-full p-2 border border-gray-300 rounded-md"
+              {...register("author")}
+            />
+          </div>
 
-        {/* Trường content cho phép người dùng nhập nhiều mục */}
-        <div className="mb-4">
-          <label className="block text-sm font-medium text-gray-700">
-            Nội dung
-          </label>
-          {Array.isArray(contentFields) && contentFields.length > 0 ? (
-            contentFields.map((field, index) => (
+          <div className="mb-4">
+            <label className="block text-sm font-medium text-gray-700">
+              Nội dung
+            </label>
+            {contentFields.map((field, index) => (
               <div key={index} className="mb-4">
-                <div className="pb-3 pt-3">content: {index + 1}</div>
                 <ReactQuill
                   theme="snow"
                   value={field.value}
                   onChange={(content) =>
                     handleContentChange(index, "value", content)
                   }
-                  modules={modules} // Áp dụng modules để cho phép thay đổi màu văn bản
-                  className="react-quill mb-2 h-[100px]" // Áp dụng class để thay đổi kích thước
+                  modules={modules}
+                  className="react-quill mb-2"
                 />
                 <input
                   type="text"
@@ -211,7 +202,7 @@ const UpdatePostForm = () => {
                 />
                 <input
                   type="text"
-                  placeholder="Mô tả ảnh"
+                  placeholder="Mô tả ảnh content"
                   value={field.mota_image_content}
                   onChange={(e) =>
                     handleContentChange(
@@ -223,28 +214,66 @@ const UpdatePostForm = () => {
                   className="w-full p-2 border border-gray-300 rounded-md"
                 />
               </div>
-            ))
-          ) : (
-            <p>Không có nội dung để hiển thị.</p>
-          )}
-          <button
-            type="button"
-            onClick={addContentField}
-            className="text-blue-500 hover:underline"
-          >
-            <span>&#43;</span> Thêm mục nội dung
-          </button>
-        </div>
+            ))}
+            <button
+              type="button"
+              onClick={addContentField}
+              className="text-blue-500 hover:underline"
+            >
+              <span>&#43;</span> Thêm mục nội dung
+            </button>
+          </div>
 
-        <div className="flex justify-center">
-          <button
-            type="submit"
-            className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600"
-          >
-            Cập nhật tin tức
-          </button>
+          <div className="flex justify-center">
+            <button
+              type="submit"
+              className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600"
+            >
+              Cập nhật tin tức
+            </button>
+          </div>
+        </form>
+      </div>
+
+      {/* Xem trước tin tức */}
+      <div className="w-1/2 bg-gray-100 p-4 rounded-md shadow-md">
+        <h2 className="text-xl font-semibold mb-4">Xem trước tin tức</h2>
+        <div>
+          <h3 className="text-lg font-bold">
+            {watchedFields.title || "Tiêu đề sẽ hiển thị ở đây"}
+          </h3>
+          <p className="text-sm text-gray-600 mb-2">
+            {watchedFields.description || "Mô tả sẽ hiển thị ở đây..."}
+          </p>
+          {watchedFields.image && (
+            <img
+              src={watchedFields.image}
+              alt="Hình ảnh chính"
+              className="w-full h-auto mb-2"
+            />
+          )}
+          {contentFields.map((field, index) => (
+            <div key={index} className="mb-4">
+              <div
+                className="mb-2"
+                dangerouslySetInnerHTML={{ __html: field.value }}
+              />
+              {field.image && (
+                <img
+                  src={field.image}
+                  alt={field.mota_image_content || "Hình ảnh phụ"}
+                  className="w-full h-auto"
+                />
+              )}
+              {field.mota_image_content && (
+                <p className="text-sm text-gray-600">
+                  {field.mota_image_content}
+                </p>
+              )}
+            </div>
+          ))}
         </div>
-      </form>
+      </div>
     </div>
   );
 };

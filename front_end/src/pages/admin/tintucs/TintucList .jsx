@@ -57,30 +57,30 @@ const TintucList = () => {
     );
   };
 
-  const handleDeleteSelected = async () => {
-    if (
-      selectedIds.length > 0 &&
-      window.confirm("Are you sure you want to delete selected tintucs?")
-    ) {
-      try {
-        // Xóa từng tin tức theo ID
-        await Promise.all(
-          selectedIds.map((id) =>
-            axios.delete(
-              `https://my-worker.namdaynay001.workers.dev/tintucs/${id}`
-            )
-          )
-        );
-        // Cập nhật danh sách tin tức
-        settintucs((prev) =>
-          prev.filter((tintuc) => !selectedIds.includes(tintuc.id))
-        );
-        setSelectedIds([]); // Reset danh sách được chọn
-      } catch (error) {
-        console.error("Error deleting selected tintucs:", error);
-      }
-    }
-  };
+  // const handleDeleteSelected = async () => {
+  //   if (
+  //     selectedIds.length > 0 &&
+  //     window.confirm("Are you sure you want to delete selected tintucs?")
+  //   ) {
+  //     try {
+  //       // Xóa từng tin tức theo ID
+  //       await Promise.all(
+  //         selectedIds.map((id) =>
+  //           axios.delete(
+  //             `https://my-worker.namdaynay001.workers.dev/tintucs/${id}`
+  //           )
+  //         )
+  //       );
+  //       // Cập nhật danh sách tin tức
+  //       settintucs((prev) =>
+  //         prev.filter((tintuc) => !selectedIds.includes(tintuc.id))
+  //       );
+  //       setSelectedIds([]); // Reset danh sách được chọn
+  //     } catch (error) {
+  //       console.error("Error deleting selected tintucs:", error);
+  //     }
+  //   }
+  // };
 
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
@@ -100,7 +100,7 @@ const TintucList = () => {
       >
         Add tintuc
       </Link>
-      <button
+      {/* <button
         onClick={handleDeleteSelected}
         disabled={selectedIds.length === 0}
         className={`ml-4 px-4 py-2 rounded ${
@@ -110,7 +110,7 @@ const TintucList = () => {
         }`}
       >
         Delete Selected
-      </button>
+      </button> */}
       {currentTintucs.length === 0 ? (
         <div className="text-gray-600">Không có tin tức</div>
       ) : (
