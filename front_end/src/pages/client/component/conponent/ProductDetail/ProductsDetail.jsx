@@ -111,18 +111,19 @@ const ProductsDetail = () => {
 
   return (
     <div className="font-sans">
+      {/* Update meta tags dynamically */}
       <Helmet>
-        <meta property="og:type" content="article" />
+        <title>{product.title}</title>
+        <meta name="description" content={product.description} />
         <meta property="og:title" content={product.title} />
         <meta property="og:description" content={product.description} />
         <meta property="og:image" content={product.image} />
-        <meta property="og:url" content={pageUrl} />
-        <meta name="keywords" content={product.content} />
+        <meta property="og:url" content={window.location.href} />
+        <meta property="og:type" content="article" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={product.title} />
         <meta name="twitter:description" content={product.description} />
         <meta name="twitter:image" content={product.image} />
-        <meta name="twitter:url" content={pageUrl} />
       </Helmet>
       <Header />
       <div className="md:w-[63%] mx-auto px-4 py-5 md:py-10">
