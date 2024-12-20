@@ -1,6 +1,5 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
-import { Helmet } from "react-helmet";
+import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import Footer from "../../../../../layout/client/componentClient/Footer";
 import Header from "../../../../../layout/client/componentClient/Header";
@@ -111,27 +110,6 @@ const ProductsDetail = () => {
 
   return (
     <div className="font-sans">
-      <Helmet>
-        <title>{product.title}</title>
-        <meta name="description" content={product.description} />
-        <meta property="og:title" content={product.title} />
-        <meta property="og:description" content={product.description} />
-        {/* Cập nhật lại meta image */}
-        <meta
-          property="og:image"
-          content={product.image || "path/to/default/image.jpg"}
-        />
-        <meta property="og:url" content={window.location.href} />
-        <meta property="og:type" content="article" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={product.title} />
-        <meta name="twitter:description" content={product.description} />
-        <meta
-          name="twitter:image"
-          content={product.image || "path/to/default/image.jpg"}
-        />
-      </Helmet>
-
       <Header />
       <div className="md:w-[63%] mx-auto px-4 py-5 md:py-10">
         {/* Content */}
