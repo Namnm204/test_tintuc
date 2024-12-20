@@ -6,7 +6,7 @@ const Fulltintuc = ({ tintucs }) => {
       {tintucs.map((tintuc) => (
         <Link
           key={tintuc.id}
-          to={`/tintuc/${tintuc.id}`}
+          to={`/${tintuc.id}`}
           className="w-full md:w-[calc(50%-1rem)]"
         >
           <div className="flex flex-col items-center">

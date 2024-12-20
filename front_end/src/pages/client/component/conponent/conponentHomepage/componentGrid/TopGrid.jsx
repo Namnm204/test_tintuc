@@ -6,7 +6,7 @@ const TopGrid = ({ tintucs }) => {
       <div className="grid grid-cols-2 sm:grid-cols-3  md:grid-cols-4 gap-8">
         {tintucs.slice(0, 4).map((tintuc, index) => (
           <div key={index} className="md:w-full w-[110%] h-[180px] ">
-            <Link to={`/tintuc/${tintuc.id}`} className="w-full">
+            <Link to={`/${tintuc.id}`} className="w-full">
               <img
                 src={tintuc.image || "../../../public/banner.jpg"}
                 alt={tintuc.title || "Tin tức"}
@@ -23,7 +23,7 @@ const TopGrid = ({ tintucs }) => {
       <div className="grid grid-cols-2 sm:grid-cols-3 mt-8 md:grid-cols-4 gap-8 ">
         {tintucs.slice(4, 8).map((tintuc, index) => (
           <div key={index} className="md:w-full w-[110%] h-[180px] ">
-            <Link to={`/tintuc/${tintuc.slug}`} className="w-full">
+            <Link to={`/${tintuc.slug}`} className="w-full">
               <img
                 src={tintuc.image || "../../../public/banner.jpg"} // Thay bằng trường hình ảnh thực tế nếu có
                 alt={tintuc.title || "Tin tức"}

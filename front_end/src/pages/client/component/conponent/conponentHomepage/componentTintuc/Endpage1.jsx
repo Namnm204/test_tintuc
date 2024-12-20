@@ -9,7 +9,7 @@ const Endpage1 = ({ tintucs }) => {
       <div className="grid grid-cols-2 sm:grid-cols-3 pb-8 md:grid-cols-4 md:gap-4 gap-8">
         {tin24.map((tintuc, index) => (
           <div key={index} className="md:w-full w-[110%] h-[180px]">
-            <Link to={`/tintuc/${tintuc.id}`} className="w-full">
+            <Link to={`/${tintuc.id}`} className="w-full">
               <img
                 src={tintuc.image || "../../../public/banner.jpg"}
                 alt={tintuc.title || "Tin tức"}
@@ -27,7 +27,7 @@ const Endpage1 = ({ tintucs }) => {
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-8">
           {tin35.map((tintuc, index) => (
             <div key={index} className="md:w-full w-[110%] h-[180px] ">
-              <Link to={`/tintuc/${tintuc.id}`} className="w-full">
+              <Link to={`/${tintuc.id}`} className="w-full">
                 <img
                   src={tintuc.image || "../../../public/banner.jpg"}
                   alt={tintuc.title || "Tin tức"}

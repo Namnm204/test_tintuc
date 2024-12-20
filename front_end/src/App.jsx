@@ -19,9 +19,7 @@ function App() {
     <Routes>
       <Route path="" element={<Client />}></Route>
       <Route path="login" element={<Login />}></Route>
-      <Route path="tintuc">
-        <Route path=":slug" element={<ProductsDetail />} />
-      </Route>
+        <Route path="/:slug" element={<ProductsDetail />} />
       <Route path="*" element={<NotFound />} />
 
       <Route path="admin" element={<PrivateRoute><AdminLayout /></PrivateRoute>}> 

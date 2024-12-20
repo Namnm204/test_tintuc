@@ -6,7 +6,7 @@ const CustomLayout = ({ tintucs, banners }) => {
       {/* Left Column - Banner */}
       <div className="w-full h-auto hidden md:block md:w-[25%] md:mr-4 mb-4 md:mb-0">
         {banners.length > 1 && (
-          <Link to={`/tintuc/${tintucs[0]?.slug}`} className="w-full">
+          <Link to={`/${tintucs[0]?.slug}`} className="w-full">
             <img
               src={banners[0].imageSale}
               alt={`Banner ${banners[0].slug}`}
@@ -23,7 +23,7 @@ const CustomLayout = ({ tintucs, banners }) => {
           {tintucs.slice(0, 4).map((tintuc) => (
             <Link
               key={tintuc.slug}
-              to={`/tintuc/${tintuc.slug}`}
+              to={`/${tintuc.slug}`}
               className="w-full"
             >
               <div className="flex flex-col items-center">
@@ -46,7 +46,7 @@ const CustomLayout = ({ tintucs, banners }) => {
           {tintucs.slice(4, 8).map((tintuc) => (
             <Link
               key={tintuc.slug}
-              to={`/tintuc/${tintuc.slug}`}
+              to={`/${tintuc.slug}`}
               className="w-full"
             >
               <div className="flex flex-col items-center">

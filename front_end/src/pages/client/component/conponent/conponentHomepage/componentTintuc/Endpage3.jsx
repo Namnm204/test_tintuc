@@ -10,7 +10,7 @@ const Endpage3 = ({ tintucs }) => {
       {/* Tin lớn */}
       {largeCard && (
         <div className="w-full  rounded-lg mb-10 md:mt-0 mt-10">
-          <Link to={`/tintuc/${largeCard.id}`} className="w-full">
+          <Link to={`/${largeCard.id}`} className="w-full">
             <img
               src={largeCard.image || "/banner.jpg"}
               alt={largeCard.title || "Tin tức"}
@@ -25,7 +25,7 @@ const Endpage3 = ({ tintucs }) => {
       {/* Tin nhỏ */}
       {smallCards.map((tintuc, index) => (
         <div key={index} className="grid grid-cols-1 md:grid-cols-2 rounded-lg">
-          <Link to={`/tintuc/${tintuc.id}`} className="w-full">
+          <Link to={`/${tintuc.id}`} className="w-full">
             <img
               src={tintuc.image || "/banner.jpg"}
               alt={tintuc.title || `Tin tức ${index + 2}`}

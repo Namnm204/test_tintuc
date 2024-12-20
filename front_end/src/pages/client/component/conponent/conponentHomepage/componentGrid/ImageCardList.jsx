@@ -12,7 +12,7 @@ const ImageCardList = ({ tintucs, banners }) => {
       {/* Large Image Card */}
       {largeCard && (
         <div className="w-full rounded-lg mb-10 md:mt-0 mt-10">
-          <Link to={`/tintuc/${largeCard.slug}`} className="w-full">
+          <Link to={`/${largeCard.slug}`} className="w-full">
             <img
               src={largeCard.image || "/banner.jpg"} // Use provided image or fallback
               alt={largeCard.title || "Tin tức"}
@@ -31,7 +31,7 @@ const ImageCardList = ({ tintucs, banners }) => {
       {/* Small Image Cards */}
       {smallCards.map((tintuc, index) => (
         <div key={index} className="grid grid-cols-1 md:grid-cols-2 rounded-lg">
-          <Link to={`/tintuc/${tintuc.slug}`} className="w-full">
+          <Link to={`/${tintuc.slug}`} className="w-full">
             <img
               src={tintuc.image || "/banner.jpg"} // Use provided image or fallback
               alt={tintuc.title || `Tin tức ${index + 2}`}
