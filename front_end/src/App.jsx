@@ -16,7 +16,7 @@ import Dashboard from "./pages/admin/Doashboard";
 
 function App() {
   return (
-    <Routes>
+    <Routes> 
       <Route path="" element={<Client />}></Route>
       <Route path="login" element={<Login />}></Route>
         <Route path="/:slug" element={<ProductsDetail />} />
