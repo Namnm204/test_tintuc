@@ -39,6 +39,7 @@ const TintucAdd = () => {
 
     const newData = {
       ...data,
+      image: mainImage, // Lấy từ state
       created_at: vietnamTime,
       content: contentFields.filter(
         (item) =>
@@ -136,9 +137,8 @@ const TintucAdd = () => {
               type="text"
               placeholder="Đường dẫn ảnh chính"
               className="w-full p-2 border border-gray-300 rounded-md"
-              value={mainImage}
-              onChange={handleMainImageChange}
-              {...register("image")}
+              value={mainImage} // Được quản lý bởi state
+              onChange={handleMainImageChange} // Hàm cập nhật state
             />
           </div>
 
