@@ -25,7 +25,7 @@ const Header = () => {
   };
 
   return (
-    <header className="hidden md:flex flex-col md:flex-row items-center bg-white p-4 shadow-lg">
+    <header className="flex flex-col md:flex-row items-center bg-white p-4 shadow-lg">
       <div className="w-full md:w-[90%] mx-auto flex flex-col md:flex-row items-center justify-between">
         {/* Logo */}
         <div className="flex justify-center items-center w-full md:w-[230px] border-r pr-4">
@@ -77,6 +77,11 @@ const Header = () => {
             <button className="mx-2 pb-2 text-gray-700 hover:text-blue-500 transition duration-300">
               Công nghệ
             </button>
+            <Link to={"/random"}>
+              <button className="mx-2 pb-2 text-gray-700 hover:text-blue-500 transition duration-300">
+                Vòng quay Random
+              </button>
+            </Link>
 
             <button
               onClick={toggleSearch}

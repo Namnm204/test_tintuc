@@ -3,7 +3,7 @@ import NewsLayout from "./component/conponent/conponentHomepage/NewsLayout";
 import CustomLayout from "./component/conponent/conponentHomepage/CustomLayout ";
 import Banner from "./component/conponent/conponentHomepage/Banner";
 import GridLayout from "./component/conponent/conponentHomepage/GridLayout";
-import StickyImages from "./component/conponent/conponentHomepage/StickyImages";
+// import StickyImages from "./component/conponent/conponentHomepage/StickyImages";
 
 const HomePage = () => {
   const [tintucs, setTintucs] = useState([]);
@@ -61,7 +61,7 @@ const HomePage = () => {
       <CustomLayout tintucs={customLayoutArticles} banners={banners} />
       <Banner />
       <GridLayout tintucs={tintucs} banners={banners} />
-      <StickyImages />
+      {/* <StickyImages /> */}
     </div>
   );
 };
