@@ -106,25 +106,23 @@ const ProductsDetail = () => {
 
   useEffect(() => {
     if (product) {
-      // Cập nhật meta tags khi dữ liệu sản phẩm được tải
+      // Cập nhật các meta tags
       document.title = product.title;
-      document
-        .querySelector('meta[name="description"]')
-        .setAttribute("content", product.description);
-      document
-        .querySelector('meta[name="keywords"]')
-        .setAttribute("content", "sản phẩm, chi tiết, cửa hàng");
-      document
-        .querySelector('meta[property="og:title"]')
-        .setAttribute("content", product.title);
-      document
-        .querySelector('meta[property="og:description"]')
-        .setAttribute("content", product.description);
-      document
-        .querySelector('meta[property="og:image"]')
-        .setAttribute("content", product.image);
+      document.querySelector('meta[name="description"]').setAttribute("content", product.description);
+      document.querySelector('meta[name="keywords"]').setAttribute("content", "sản phẩm, chi tiết, cửa hàng");
+  
+      // Cập nhật Open Graph meta tags
+      document.querySelector('meta[property="og:title"]').setAttribute("content", product.title);
+      document.querySelector('meta[property="og:description"]').setAttribute("content", product.description);
+      document.querySelector('meta[property="og:image"]').setAttribute("content", product.image);
+  
+      // Cập nhật Twitter meta tags
+      document.querySelector('meta[name="twitter:title"]').setAttribute("content", product.title);
+      document.querySelector('meta[name="twitter:description"]').setAttribute("content", product.description);
+      document.querySelector('meta[name="twitter:image"]').setAttribute("content", product.image);
     }
   }, [product]);
+  
 
   if (!product) return <p>Loading...</p>;
 
