@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import Footer from "../../../../../layout/client/componentClient/Footer";
 import Header from "../../../../../layout/client/componentClient/Header";
-import { Helmet } from "react-helmet-async";
 
 import { FaCopy, FaFacebookF, FaLinkedinIn, FaTwitter } from "react-icons/fa";
 
@@ -111,17 +110,6 @@ const ProductsDetail = () => {
 
   return (
     <div className="font-sans">
-      <Helmet>
-        <title>{product.title}</title>
-        <meta property="og:title" content={product.title} />
-        <meta
-          property="og:description"
-          content={product.content.slice(0, 150)}
-        />
-        <meta property="og:image" content={product.image} />
-        <meta property="og:url" content={pageUrl} />
-        <meta property="og:type" content="article" />
-      </Helmet>
       <Header />
       <div className="md:w-[63%] mx-auto px-4 py-5 md:py-10">
         {/* Content */}
