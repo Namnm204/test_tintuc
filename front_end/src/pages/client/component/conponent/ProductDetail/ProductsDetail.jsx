@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import Footer from "../../../../../layout/client/componentClient/Footer";
 import Header from "../../../../../layout/client/componentClient/Header";
+import { Helmet } from "react-helmet-async";
 
 import { FaCopy, FaFacebookF, FaLinkedinIn, FaTwitter } from "react-icons/fa";
 
@@ -14,7 +15,6 @@ const ShareButtons = ({ url }) => {
 
   return (
     <div className="flex space-x-4 mt-4">
-      {/* Facebook Share */}
       <a
         href={`https://www.facebook.com/sharer/sharer.php?u=${url}`}
         target="_blank"
@@ -23,8 +23,6 @@ const ShareButtons = ({ url }) => {
       >
         <FaFacebookF size={24} />
       </a>
-
-      {/* Twitter Share */}
       <a
         href={`https://twitter.com/intent/tweet?url=${url}&text=Check%20this%20out!`}
         target="_blank"
@@ -33,8 +31,6 @@ const ShareButtons = ({ url }) => {
       >
         <FaTwitter size={24} />
       </a>
-
-      {/* LinkedIn Share */}
       <a
         href={`https://www.linkedin.com/shareArticle?mini=true&url=${url}`}
         target="_blank"
@@ -43,8 +39,6 @@ const ShareButtons = ({ url }) => {
       >
         <FaLinkedinIn size={24} />
       </a>
-
-      {/* Copy Link */}
       <button
         onClick={handleCopyLink}
         className="text-gray-600 hover:text-gray-800"
@@ -110,11 +104,22 @@ const ProductsDetail = () => {
 
   return (
     <div className="font-sans">
+      <Helmet>
+        <title>{product.title} - Tin tức</title>
+        <meta name="description" content={product.description} />
+        <meta property="og:title" content={product.title} />
+        <meta property="og:description" content={product.description} />
+        <meta property="og:image" content={product.image} />
+        <meta property="og:url" content={pageUrl} />
+        <meta name="twitter:title" content={product.title} />
+        <meta name="twitter:description" content={product.description} />
+        <meta name="twitter:image" content={product.image} />
+        <meta name="twitter:card" content="summary_large_image" />
+      </Helmet>
       <Header />
       <div className="md:w-[63%] mx-auto px-4 py-5 md:py-10">
         {/* Content */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {/* Left Column: Article Content */}
           <div className="md:col-span-2">
             <h1 className="text-3xl font-bold text-black">{product.title}</h1>
             <div className="text-sm text-gray-500 flex md:justify-between mt-5">
@@ -133,8 +138,6 @@ const ProductsDetail = () => {
             <div className="space-y-4 mb-3">
               <p className="text-lg text-gray-700">{product.description}</p>
             </div>
-
-            {/* Article Image Section */}
             <div className="mb-4">
               <img
                 src={product.image}
@@ -143,8 +146,6 @@ const ProductsDetail = () => {
               />
               <p className="text-center text-[13px]">{product.mota_image}</p>
             </div>
-
-            {/* Dynamic Content */}
             <div>
               {product.content &&
               Array.isArray(product.content) &&
@@ -175,14 +176,9 @@ const ProductsDetail = () => {
                 <p>No additional content available.</p>
               )}
             </div>
-
-            {/* Share Buttons */}
             <ShareButtons url={pageUrl} />
           </div>
-
-          {/* Right Column: Sidebar */}
           <div className="space-y-8">
-            {/* Featured News */}
             <div>
               <h3 className="text-xl font-semibold text-gray-800">
                 Tin tức nổi bật
@@ -217,8 +213,6 @@ const ProductsDetail = () => {
             </div>
           </div>
         </div>
-
-        {/* Banner */}
         <div className="grid md:grid-cols-3 grid-cols-1 gap-4 mt-16">
           <img
             src="https://i.postimg.cc/GtpZjNBk/imagessale.jpg"
@@ -237,7 +231,6 @@ const ProductsDetail = () => {
           />
         </div>
       </div>
-
       <Footer />
     </div>
   );
