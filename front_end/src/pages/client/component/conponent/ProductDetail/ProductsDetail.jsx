@@ -104,26 +104,6 @@ const ProductsDetail = () => {
     fetchRandomNews();
   }, [slug]);
 
-  useEffect(() => {
-    if (product) {
-      // Cập nhật các meta tags
-      document.title = product.title;
-      document.querySelector('meta[name="description"]').setAttribute("content", product.description);
-      document.querySelector('meta[name="keywords"]').setAttribute("content", "sản phẩm, chi tiết, cửa hàng");
-  
-      // Cập nhật Open Graph meta tags
-      document.querySelector('meta[property="og:title"]').setAttribute("content", product.title);
-      document.querySelector('meta[property="og:description"]').setAttribute("content", product.description);
-      document.querySelector('meta[property="og:image"]').setAttribute("content", product.image);
-  
-      // Cập nhật Twitter meta tags
-      document.querySelector('meta[name="twitter:title"]').setAttribute("content", product.title);
-      document.querySelector('meta[name="twitter:description"]').setAttribute("content", product.description);
-      document.querySelector('meta[name="twitter:image"]').setAttribute("content", product.image);
-    }
-  }, [product]);
-  
-
   if (!product) return <p>Loading...</p>;
 
   const pageUrl = window.location.href;
