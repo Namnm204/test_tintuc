@@ -1,7 +1,7 @@
 const Footer = () => {
   return (
     <footer className="shadow border-t bg-white">
-      <div className="container mx-auto flex flex-col lg:flex-row items-start p-6 md:p-10 gap-10">
+      <div className=" mx-auto flex flex-col lg:flex-row items-start p-6 md:p-10 gap-10">
         {/* Logo */}
         <div className="w-full lg:w-[15%] flex-shrink-0">
           <img
