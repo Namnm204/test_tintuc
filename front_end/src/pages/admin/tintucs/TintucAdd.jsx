@@ -13,6 +13,7 @@ const TintucAdd = () => {
     { value: "", image: "", mota_image_content: "" },
   ]);
   const [mainImage, setMainImage] = useState(""); // State to store the main image URL
+  const [videoUrl, setVideoUrl] = useState(""); // State to store video URL
 
   const addContentField = () => {
     setContentFields([
@@ -41,6 +42,7 @@ const TintucAdd = () => {
       ...data,
       image: mainImage, // Lấy từ state
       created_at: vietnamTime,
+      video: isValidVideoUrl(videoUrl) ? videoUrl : "", // Lưu video nếu hợp lệ
       content: contentFields.filter(
         (item) =>
           item.value.trim() !== "" ||
@@ -91,6 +93,26 @@ const TintucAdd = () => {
       (url.startsWith("http://") || url.startsWith("https://")) &&
       (url.endsWith(".jpg") || url.endsWith(".jpeg") || url.endsWith(".png"))
     );
+  };
+
+  // Hàm chuyển đổi URL YouTube thành dạng embed
+  const convertToEmbedUrl = (url) => {
+    const regex = /(?:https?:\/\/)?(?:www\.)?youtube\.com\/watch\?v=([^&]+)/;
+    const match = url.match(regex);
+    if (match && match[1]) {
+      return `https://www.youtube.com/embed/${match[1]}?autoplay=1`;
+    }
+    return url; // Nếu không phải YouTube URL, trả về URL gốc
+  };
+
+  // Hàm kiểm tra URL video hợp lệ
+  const isValidVideoUrl = (url) => {
+    const isYouTube =
+      url.includes("youtube.com") && /(?:watch\?v=|embed\/)/.test(url);
+    const isVimeo = url.includes("vimeo.com");
+    const isDailyMotion = url.includes("dailymotion.com");
+
+    return isYouTube || isVimeo || isDailyMotion;
   };
 
   // Lấy giá trị người dùng đã nhập vào
@@ -168,6 +190,28 @@ const TintucAdd = () => {
               {...register("author")}
             />
           </div>
+
+          {/* Nhập URL video */}
+          <div className="mb-4">
+            <input
+              type="text"
+              placeholder="URL video (YouTube, Vimeo, Dailymotion...)"
+              className="w-full p-2 border border-gray-300 rounded-md"
+              value={videoUrl}
+              onChange={(e) => setVideoUrl(e.target.value)}
+            />
+          </div>
+
+          {/* Hiển thị video nếu URL hợp lệ */}
+          {isValidVideoUrl(videoUrl) && (
+            <iframe
+              className="mt-2 w-full h-[200px] rounded-md"
+              src={convertToEmbedUrl(videoUrl)}
+              frameBorder="0"
+              allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            ></iframe>
+          )}
 
           {/* Trường content cho phép người dùng nhập nhiều mục */}
           <div className="mb-4">
@@ -250,6 +294,17 @@ const TintucAdd = () => {
           )}
 
           <p className="mt-2">{mota_image}</p>
+
+          {/* Hiển thị video nếu có */}
+          {isValidVideoUrl(videoUrl) && (
+            <iframe
+              className="mt-2 w-full h-[200px] rounded-md"
+              src={convertToEmbedUrl(videoUrl)} // Chuyển đổi URL thành dạng nhúng
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            ></iframe>
+          )}
 
           {/* Render content */}
           {contentFields.map((field, index) => (
