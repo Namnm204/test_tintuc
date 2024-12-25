@@ -101,7 +101,7 @@ const TintucAdd = () => {
 
   return (
     <div className="flex">
-      <div className="mx-auto p-4 bg-white rounded-md shadow-md w-1/2">
+      <div className="mx-auto p-4 bg-white rounded-md shadow-md md:w-1/2">
         <form onSubmit={handleSubmit(onSubmit)}>
           <h1 className="text-2xl font-semibold text-center mb-4">
             Thêm tin Tức
