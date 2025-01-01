@@ -9,6 +9,7 @@ export async function handlePost(request, env) {
       author = "",
       content = [],
       created_at = new Date().toISOString(),
+      keyword = "", // Thêm trường keywords
     } = requestBody;
 
     // Hàm chuyển đổi title thành slug
@@ -44,7 +45,7 @@ export async function handlePost(request, env) {
 
     // Chèn bài viết mới vào cơ sở dữ liệu
     const result = await env.D1.prepare(
-      "INSERT INTO tintucs (title, description, image, mota_image, author, content, created_at, slug, view) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)"
+      "INSERT INTO tintucs (title, description, image, mota_image, author, content, created_at, slug, view, keyword) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
     )
       .bind(
         title,
@@ -55,7 +56,8 @@ export async function handlePost(request, env) {
         contentJson,
         created_at,
         slug,
-        0 // Lượt xem mặc định là 0
+        0, // Lượt xem mặc định là 0
+        keyword // Thêm giá trị keywords
       )
       .run();
 
@@ -73,6 +75,7 @@ export async function handlePost(request, env) {
             content: contentJson,
             created_at,
             view: 0,
+            keyword, // Trả về keywords
           },
         }),
         {

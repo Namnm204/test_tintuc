@@ -47,6 +47,7 @@ const TintucAdd = () => {
           item.image.trim() !== "" ||
           item.mota_image_content.trim() !== ""
       ),
+      keyword: data.keyword ? data.keyword.trim() : "", // Thêm từ khóa
     };
 
     try {
@@ -129,6 +130,15 @@ const TintucAdd = () => {
               placeholder="Mô tả tin tức"
               className="w-full p-2 border border-gray-300 rounded-md"
               {...register("description", { required: true })}
+            />
+          </div>
+
+          <div className="mb-4">
+            <input
+              type="text"
+              placeholder="Từ khóa (phân cách bằng dấu phẩy)"
+              className="w-full p-2 border border-gray-300 rounded-md"
+              {...register("keyword")}
             />
           </div>
 
