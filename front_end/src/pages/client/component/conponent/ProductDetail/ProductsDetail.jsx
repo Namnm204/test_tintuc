@@ -104,6 +104,44 @@ const ProductsDetail = () => {
     fetchRandomNews();
   }, [slug]);
 
+  const updateMetaTag = (name, content) => {
+    let element = document.querySelector(`meta[name="${name}"]`);
+    if (!element) {
+      element = document.createElement("meta");
+      element.setAttribute("name", name);
+      document.head.appendChild(element);
+    }
+    element.setAttribute("content", content);
+  };
+
+  const updatePropertyTag = (property, content) => {
+    let element = document.querySelector(`meta[property="${property}"]`);
+    if (!element) {
+      element = document.createElement("meta");
+      element.setAttribute("property", property);
+      document.head.appendChild(element);
+    }
+    element.setAttribute("content", content);
+  };
+
+  useEffect(() => {
+    if (product) {
+      const pageUrl = window.location.href;
+
+      // Cập nhật thẻ meta
+      updateMetaTag("description", product.description);
+      updateMetaTag("keywords", "tin tức, sản phẩm, chi tiết");
+      updatePropertyTag("og:title", product.title);
+      updatePropertyTag("og:description", product.description);
+      updatePropertyTag("og:image", product.image);
+      updatePropertyTag("og:url", pageUrl);
+      updateMetaTag("twitter:card", "summary_large_image");
+      updateMetaTag("twitter:title", product.title);
+      updateMetaTag("twitter:description", product.description);
+      updateMetaTag("twitter:image", product.image);
+    }
+  }, [product]);
+
   if (!product) return <p>Loading...</p>;
 
   const pageUrl = window.location.href;
