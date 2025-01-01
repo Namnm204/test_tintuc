@@ -37,7 +37,7 @@ const Banner = () => {
   };
 
   return (
-    <div className="w-full ">
+    <div className="w-full hidden md:block">
       {banners.length > 0 ? (
         <Slider {...settings}>
           {banners.map((banner) => (
