@@ -8,8 +8,8 @@ const Client = () => {
   return (
     <div>
       <Header />
-      <Banner />
-      <Nav />
+      {/* <Banner /> */}
+      {/* <Nav /> */}
       <main>
         <HomePage />
       </main>
