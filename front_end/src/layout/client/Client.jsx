@@ -1,8 +1,8 @@
 import HomePage from "../../pages/client/HomePage";
-import Banner from "./componentClient/Banner";
+// import Banner from "./componentClient/Banner";
 import Footer from "./componentClient/Footer";
 import Header from "./componentClient/Header";
-import Nav from "./componentClient/Nav";
+// import Nav from "./componentClient/Nav";
 
 const Client = () => {
   return (
