@@ -32,7 +32,7 @@ const Header = () => {
           <Link to={`/`} className="absolute">
             <img
               src="/assets/logoweb-CVGW3161.png"
-              className="w-[30%] md:w-[30%] mx-auto mt-5"
+              className="w-[30%] md:w-[30%] mx-auto mt-2"
               alt="Logo"
             />
           </Link>
